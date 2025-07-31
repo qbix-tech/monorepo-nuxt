@@ -4,9 +4,14 @@
   "scripts": {
     "prepare": "husky && pnpm dx:prepare",
     "preinstall": "npx only-allow pnpm",
+    "build:simple": "nx run @org/simple:build",
     "build:database-manager": "nx run @org/database-manager:build",
+    "preview:simple": "nx run @org/simple:preview",
     "preview:database-manager": "nx run @org/database-manager:preview",
     "dev": "pnpm dev:all",
+    "dev:simple": "nx run @org/simple:dev",
+    "dev:layer:i18n": "nx run @org/i18n:dev",
+    "dev:layer:ui": "nx run @org/ui:dev",
     "dev:email": "nx run @org/email:preview:watch",
     "dev:database-manager": "nx run @org/database-manager:dev",
     "dev:all": "nx run-many --projects=apps/* --exclude=workers/database-manager --target=dev --parallel 10 --output-style stream",
@@ -45,6 +50,7 @@
   },
   "workspaces": [
     "apps/**",
+    "layers/**",
     "workers/**",
     "packages/**"
   ],

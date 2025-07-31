@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --color-qbix-50: #f4fdff;
+  --color-qbix-100: #e5faff;
+  --color-qbix-200: #ccf6fe;
+  --color-qbix-300: #a3f0fe;
+  --color-qbix-400: #47e1ff;
+  --color-qbix-500: #00c5ea;
+  --color-qbix-600: #008da8;
+  --color-qbix-700: #00667a;
+  --color-qbix-800: #003b47;
+  --color-qbix-900: #001d23;
+  --color-qbix-950: #001114;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@org/ui",
+  "private": true,
+  "type": "module",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare .playground",
+    "prepare": "nuxt prepare .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^3.3.0",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "nuxt": "^4.0.1",
+    "typescript": "^5.8.3",
+    "vue": "latest"
+  }
+}

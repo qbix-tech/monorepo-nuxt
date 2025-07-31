@@ -1,0 +1,23 @@
+{
+  "name": "@org/i18n",
+  "private": true,
+  "type": "module",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare .playground",
+    "prepare": "nuxt prepare .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@nuxtjs/i18n": "^10.0.3"
+  },
+  "devDependencies": {
+    "nuxt": "^4.0.1",
+    "typescript": "^5.8.3",
+    "vue": "latest"
+  }
+}
