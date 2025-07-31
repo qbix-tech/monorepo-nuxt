@@ -7,6 +7,7 @@ import type {
   DrizzlePGClientDatabase,
 } from "./module/database/types";
 import DrizzleDatabase from "./module/database";
+import { migrate as drizzlePGMigrator } from "drizzle-orm/node-postgres/migrator";
 
 const createDB = <T extends DrizzlePGConfig>(config: T) => {
   const _dbInstance = new DrizzleDatabase(config).getDrizzlePG();
@@ -26,7 +27,7 @@ const createSeeder = (config: SeedConfig) => {
   };
 };
 
-export { createDB, createSeeder };
+export { createDB, createSeeder, drizzlePGMigrator };
 
 export * as dbs from "../schema";
 export * from "./helpers";

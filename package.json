@@ -2,11 +2,12 @@
   "name": "@org/source",
   "private": true,
   "scripts": {
-    "prepare": "husky",
+    "prepare": "husky && nx run-many --target=prepare --parallel 10 --output-style stream",
     "preinstall": "npx only-allow pnpm",
     "dev": "pnpm dev:all",
     "dev:email": "nx run @org/email:preview:watch",
-    "dev:all": "nx run-many --projects=apps/* --exclude=apps/_*,workers/database-manager --target=dev --parallel 10 --output-style stream",
+    "dev:database-manager": "nx run @org/database-manager:dev",
+    "dev:all": "nx run-many --projects=apps/* --exclude=workers/database-manager --target=dev --parallel 10 --output-style stream",
     "d": "pnpm dx && pnpm dev",
     "dx": "pnpm i && pnpm dx:prepare && pnpx tsx ./scripts/init.env.ts && pnpm dx:up && pnpm db:migrate && pnpm db:seed",
     "dx:up": "docker compose --env-file .env -f deployments/development/compose.yaml up -d",
@@ -42,6 +43,7 @@
   },
   "workspaces": [
     "apps/**",
+    "workers/**",
     "packages/**"
   ],
   "packageManager": "pnpm@10.13.1",

@@ -1,0 +1,15 @@
+{
+  "name": "@org/database-manager",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nitro build && cp -r ../../packages/database/migrations .output/migrations",
+    "dev": "nitro dev",
+    "prepare": "nitro prepare",
+    "preview": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@org/database": "workspace:*",
+    "nitropack": "^2.12.4"
+  }
+}

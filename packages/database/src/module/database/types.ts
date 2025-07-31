@@ -14,7 +14,7 @@ export type DrizzlePGClientConfig = {
     config: ClientConfig;
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options: DrizzleConfig<any | undefined>;
+  options?: DrizzleConfig<any | undefined>;
 };
 
 export type DrizzlePGPoolConfig = {
@@ -23,7 +23,7 @@ export type DrizzlePGPoolConfig = {
     config: PoolConfig;
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  options: DrizzleConfig<any | undefined>;
+  options?: DrizzleConfig<any | undefined>;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
