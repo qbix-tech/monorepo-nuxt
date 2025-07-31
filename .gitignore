@@ -50,7 +50,3 @@ Thumbs.db
 
 # Docker
 .dockerVolume
-
-
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md

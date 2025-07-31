@@ -1,0 +1,25 @@
+{
+  "name": "@org/email",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "preview": "vite-node --config vite.config.ts scripts/build-mocks.ts",
+    "preview:watch": "watch --interval=1 \"vite-node --config vite.config.ts scripts/build-mocks.ts\" . --ignoreDirectoryPattern='/(dist|node_modules|.git|email.config.ts|package.json|tsconfig.json|vite.config.ts)/'"
+  },
+  "dependencies": {
+    "@vue-email/components": "^0.0.21",
+    "@vue-email/render": "^0.0.9",
+    "defu": "^6.1.4",
+    "emailjs": "^4.0.3",
+    "resend": "^4.7.0",
+    "vue": "^3.5.18"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "vite-node": "^3.2.4",
+    "watch": "^1.0.2"
+  }
+}
