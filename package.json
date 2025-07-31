@@ -2,7 +2,7 @@
   "name": "@org/source",
   "private": true,
   "scripts": {
-    "prepare": "husky && nx run-many --target=prepare --parallel 10 --output-style stream",
+    "prepare": "husky && pnpm dx:prepare",
     "preinstall": "npx only-allow pnpm",
     "build:database-manager": "nx run @org/database-manager:build",
     "preview:database-manager": "nx run @org/database-manager:preview",
@@ -14,7 +14,7 @@
     "dx": "pnpm i && pnpm dx:prepare && pnpx tsx ./scripts/init.env.ts && pnpm dx:up && pnpm db:migrate && pnpm db:seed",
     "dx:up": "docker compose --env-file .env -f deployments/development/compose.yaml up -d",
     "dx:down": "docker compose -f deployments/development/compose.yaml down",
-    "dx:prepare": "nx run-many --target=prepare --parallel 10",
+    "dx:prepare": "nx run-many --target=prepare --parallel 10 --output-style stream",
     "db:studio": "nx run @org/database:db:studio",
     "db:generate": "nx run @org/database:db:generate",
     "db:generate:empty": "nx run @org/database:db:generate:empty",
