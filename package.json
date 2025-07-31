@@ -4,6 +4,8 @@
   "scripts": {
     "prepare": "husky && nx run-many --target=prepare --parallel 10 --output-style stream",
     "preinstall": "npx only-allow pnpm",
+    "build:database-manager": "nx run @org/database-manager:build",
+    "preview:database-manager": "nx run @org/database-manager:preview",
     "dev": "pnpm dev:all",
     "dev:email": "nx run @org/email:preview:watch",
     "dev:database-manager": "nx run @org/database-manager:dev",
