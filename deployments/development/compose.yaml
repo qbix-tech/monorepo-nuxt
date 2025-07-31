@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: valkey/valkey:7
+    image: valkey/valkey:8
     volumes:
       - ../../.dockerVolume/valkey:/data
     environment:
