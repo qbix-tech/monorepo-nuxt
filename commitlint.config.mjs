@@ -1,0 +1,30 @@
+export default {
+  extends: ["@commitlint/config-conventional"],
+  rules: {
+    "body-max-line-length": () => [0],
+    "footer-max-line-length": () => [0],
+    "type-enum": [
+      2,
+      "always",
+      [
+        "api",
+        "build",
+        "chore",
+        "config",
+        "ci",
+        "dep",
+        "dev",
+        "docs",
+        "feat",
+        "fix",
+        "init",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+        "ui",
+      ],
+    ],
+  },
+};

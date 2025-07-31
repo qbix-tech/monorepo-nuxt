@@ -1,0 +1,17 @@
+{
+  "name": "@org/eslint-config",
+  "private": true,
+  "type": "module",
+  "files": [
+    "default.mjs",
+    "nuxt.mjs"
+  ],
+  "dependencies": {
+    "@nuxt/eslint-config": "^1.7.1",
+    "eslint": "^9.32.0",
+    "typescript-eslint": "^8.38.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,56 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+
+# compiled output
+dist
+tmp
+out-tsc
+
+# dependencies
+node_modules
+1
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+.fleet
+.idea
+
+# NX
+.nx/installation
+.nx/cache
+.nx/workspace-data
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Docker
+.dockerVolume
+
+
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md

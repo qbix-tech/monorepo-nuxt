@@ -1,0 +1,12 @@
+node_modules
+dist
+.nuxt
+.output
+.dockerVolume
+package-lock.json
+pnpm-lock.yaml
+
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data
