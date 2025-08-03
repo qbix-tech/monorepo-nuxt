@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@source "../../../app/components/**/*";
+
 @theme static {
   --color-qbix-50: #f4fdff;
   --color-qbix-100: #e5faff;
