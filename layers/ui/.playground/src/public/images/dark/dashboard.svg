@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="420px" height="300px" viewBox="0 0 420 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>dashboard</title>
+    <g id="dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.0701759178">
+        <rect id="Rectangle-Copy" stroke="#47E1FF" fill="#47E1FF" x="16.5" y="16.5" width="76" height="270" rx="8"></rect>
+        <rect id="Rectangle-Copy-2" stroke="#47E1FF" fill="#47E1FF" x="107.5" y="16.5" width="294" height="32" rx="8"></rect>
+        <rect id="Rectangle-Copy-4" stroke="#47E1FF" fill="#47E1FF" x="107.5" y="254.5" width="294" height="32" rx="8"></rect>
+        <rect id="Rectangle-Copy-3" stroke="#47E1FF" fill="#47E1FF" x="107.5" y="58.5" width="76" height="186" rx="8"></rect>
+        <rect id="Rectangle-Copy-5" stroke="#47E1FF" fill="#47E1FF" x="325.5" y="58.5" width="76" height="186" rx="8"></rect>
+        <rect id="Rectangle-Copy-6" stroke="#47E1FF" fill="#47E1FF" x="198.5" y="58.5" width="112" height="186" rx="8"></rect>
+        <rect id="Rectangle-Copy-21" stroke="#47E1FF" fill="#47E1FF" x="372.5" y="23.5" width="17" height="19" rx="2"></rect>
+        <rect id="Rectangle-Copy-22" stroke="#47E1FF" fill="#47E1FF" x="25.5" y="23.5" width="39" height="19" rx="2"></rect>
+    </g>
+</svg>

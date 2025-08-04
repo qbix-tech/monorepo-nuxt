@@ -8,4 +8,8 @@ export default defineNuxtConfig({
     modules: "src/modules",
     shared: "src/shared",
   },
+
+  i18n: {
+    strategy: "no_prefix",
+  },
 });

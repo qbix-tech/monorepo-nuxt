@@ -1,3 +1,37 @@
+<template>
+  <Primitive :as="as" :class="twMerge(defaultClass, props.class as string)">
+    <div
+      v-if="!!slots.top"
+      :class="twMerge(defaultTopClass, props.topClass as string)"
+    >
+      <slot name="top" />
+    </div>
+
+    <UContainer
+      :class="twMerge(defaultContainerClass, props.containerClass as string)"
+    >
+      <div :class="twMerge(defaultRightClass, props.rightClass as string)">
+        <slot name="right" />
+      </div>
+
+      <div :class="twMerge(defaultCenterClass, props.centerClass as string)">
+        <slot />
+      </div>
+
+      <div :class="twMerge(defaultLeftClass, props.leftClass as string)">
+        <slot name="left" />
+      </div>
+    </UContainer>
+
+    <div
+      v-if="!!slots.bottom"
+      :class="twMerge(defaultBottomClass, props.bottomClass as string)"
+    >
+      <slot name="bottom" />
+    </div>
+  </Primitive>
+</template>
+
 <script setup lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
@@ -39,37 +73,3 @@ const defaultRightClass =
 const defaultCenterClass =
   "mt-3 lg:mt-0 lg:order-2 flex items-center justify-center";
 </script>
-
-<template>
-  <Primitive :as="as" :class="twMerge(defaultClass, props.class as string)">
-    <div
-      v-if="!!slots.top"
-      :class="twMerge(defaultTopClass, props.topClass as string)"
-    >
-      <slot name="top" />
-    </div>
-
-    <UContainer
-      :class="twMerge(defaultContainerClass, props.containerClass as string)"
-    >
-      <div :class="twMerge(defaultRightClass, props.rightClass as string)">
-        <slot name="right" />
-      </div>
-
-      <div :class="twMerge(defaultCenterClass, props.centerClass as string)">
-        <slot />
-      </div>
-
-      <div :class="twMerge(defaultLeftClass, props.leftClass as string)">
-        <slot name="left" />
-      </div>
-    </UContainer>
-
-    <div
-      v-if="!!slots.bottom"
-      :class="twMerge(defaultBottomClass, props.bottomClass as string)"
-    >
-      <slot name="bottom" />
-    </div>
-  </Primitive>
-</template>

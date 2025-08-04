@@ -16,7 +16,14 @@
 
     <template #fallback>
       <slot name="fallback">
-        <div class="size-8" />
+        <UButton
+          :color="color"
+          :variant="variant"
+          v-bind="$attrs"
+          :class="twMerge(defaultClass, props.class as string)"
+          loading
+        />
+        <!-- <div class="size-8" /> -->
       </slot>
     </template>
   </ClientOnly>

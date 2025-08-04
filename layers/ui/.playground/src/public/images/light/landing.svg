@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="420px" height="300px" viewBox="0 0 420 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>landing</title>
+    <g id="landing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="16.5" y="14.5" width="387" height="39" rx="8"></rect>
+        <rect id="Rectangle-Copy" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="16.5" y="222.5" width="387" height="64" rx="8"></rect>
+        <rect id="Rectangle" fill="#E5E5E5" x="22" y="72" width="192" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-6" fill="#E5E5E5" x="22" y="102" width="192" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-16" fill="#E5E5E5" x="22" y="183" width="192" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-3" fill="#E5E5E5" x="52" y="87" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-22" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="27.5" y="266.5" width="105" height="5" rx="2.5"></rect>
+        <rect id="Rectangle-Copy-18" fill="#E5E5E5" x="52" y="198" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-13" fill="#E5E5E5" x="22" y="168" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-10" fill="#008DA8" x="52" y="144" width="75.8934911" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-8" fill="#008DA8" x="52" y="126" width="142" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-4" fill="#E5E5E5" x="168" y="87" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-19" fill="#E5E5E5" x="168" y="198" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-14" fill="#E5E5E5" x="138" y="168" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-11" fill="#008DA8" x="135.053254" y="144" width="75.8934911" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-9" fill="#008DA8" x="205" y="126" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-5" fill="#E5E5E5" x="284" y="87" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-20" fill="#E5E5E5" x="284" y="198" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-15" fill="#E5E5E5" x="254" y="168" width="106" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-12" fill="#008DA8" x="218.106509" y="144" width="75.8934911" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-2" fill="#E5E5E5" x="224" y="72" width="128" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-7" fill="#E5E5E5" x="224" y="102" width="128" height="6" rx="3"></rect>
+        <rect id="Rectangle-Copy-17" fill="#E5E5E5" x="224" y="183" width="128" height="6" rx="3"></rect>
+        <rect id="Rectangle" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="27.5" y="23.5" width="62" height="19" rx="2"></rect>
+        <rect id="Rectangle-Copy-26" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="27.5" y="237.5" width="62" height="19" rx="2"></rect>
+        <rect id="Rectangle-Copy-21" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="372.5" y="23.5" width="17" height="19" rx="2"></rect>
+        <rect id="Rectangle-Copy-23" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="336.5" y="260.5" width="11" height="11" rx="2"></rect>
+        <rect id="Rectangle-Copy-24" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="357.5" y="260.5" width="11" height="11" rx="2"></rect>
+        <rect id="Rectangle-Copy-25" stroke="#47E1FF" fill-opacity="0.0701759178" fill="#47E1FF" x="378.5" y="260.5" width="11" height="11" rx="2"></rect>
+    </g>
+</svg>

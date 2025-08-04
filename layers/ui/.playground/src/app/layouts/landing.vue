@@ -1,17 +1,15 @@
 <template>
   <Landing>
     <LandingHeader title="@org/ui">
-      <UNavigationMenu :items="items" />
+      <UNavigationMenu :items="items" variant="link" />
 
       <template #right>
-        <LocaleSelect />
-        <ColorModeButton />
         <UButton
+          icon="simple-icons:github"
           color="neutral"
           variant="ghost"
-          to="https://github.com/nuxt/ui"
+          to="https://github.com/qbix-tech/monorepo-nuxt"
           target="_blank"
-          icon="simple-icons:github"
           aria-label="GitHub"
         />
       </template>
@@ -41,7 +39,6 @@
       <UNavigationMenu :items="items" variant="link" />
 
       <template #right>
-        <ColorModeButton />
         <UButton
           icon="simple-icons:github"
           color="neutral"
@@ -63,10 +60,10 @@ const { activeHeadings, updateHeadings } = useScrollspy();
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: "Usage",
-    to: "#usage",
+    label: "Development",
+    to: "#development",
     active:
-      activeHeadings.value.includes("usage") &&
+      activeHeadings.value.includes("development") &&
       !activeHeadings.value.includes("layouts"),
   },
   {
@@ -86,7 +83,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 nuxtApp.hooks.hookOnce("page:finish", () => {
   updateHeadings(
     [
-      document.querySelector("#usage"),
+      document.querySelector("#development"),
       document.querySelector("#layouts"),
       document.querySelector("#components"),
     ].filter(Boolean) as Element[],
