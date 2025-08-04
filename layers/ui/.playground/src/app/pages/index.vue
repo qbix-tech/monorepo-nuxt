@@ -342,7 +342,7 @@ const links = computed<ButtonProps[]>(() => [
     disabled: true,
   },
   {
-    label: "Dashbaord",
+    label: "Dashboard",
     to: "/dashboard",
     variant: "subtle",
     class: "rounded-full",
