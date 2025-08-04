@@ -198,7 +198,6 @@ pnpm dev:layer:ui</pre
           <div
             class="relative h-40 rounded-md bg-gray-50 dark:bg-neutral-800/30"
           >
-            <BackgroundLampEffect height="320" />
             <LazyBackgroundBubbles :bubble-count="200" />
           </div>
 
@@ -207,6 +206,66 @@ pnpm dev:layer:ui</pre
             <span class="text-muted text-sm">
               A range of background components that can be used to create
               visually appealing sections in your application.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
+        >
+          <div
+            class="flex h-40 items-center justify-center gap-8 rounded-md bg-gray-50 dark:bg-neutral-800/30"
+          >
+            <LoadingSpinner />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Safe Containers </span>
+            <span class="text-muted text-sm">
+              Easily incorporate loader and data-fetch-safe components that can
+              be used to indicate data fetching state in your application.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
+        >
+          <div
+            class="relative h-40 overflow-hidden rounded-md bg-gray-50 dark:bg-neutral-800/30"
+          >
+            <ImageLightbox
+              src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&h=500&q=90"
+              class="object-cover"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Lightbox </span>
+            <span class="text-muted text-sm">
+              A lightbox component that can be used to display images in a
+              modal-like overlay.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
+        >
+          <div
+            class="relative h-40 overflow-hidden rounded-md bg-gray-50 dark:bg-neutral-800/30"
+          >
+            <ColorModeImage
+              light="/images/light/chart.svg"
+              dark="/images/dark/chart.svg"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Charts </span>
+            <span class="text-muted text-sm">
+              A collection of ready-to-use chart components that can be used to
+              display data in a visual format.
             </span>
           </div>
         </PageCard>
