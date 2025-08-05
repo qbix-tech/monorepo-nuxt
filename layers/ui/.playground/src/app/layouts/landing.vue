@@ -4,6 +4,7 @@
       <UNavigationMenu :items="items" variant="link" />
 
       <template #right>
+        <ThemeMenu />
         <UButton
           icon="simple-icons:github"
           color="neutral"

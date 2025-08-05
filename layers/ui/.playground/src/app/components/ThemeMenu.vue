@@ -1,25 +1,13 @@
 <template>
   <UDropdownMenu
     :items="items"
-    :content="{ align: 'center', collisionPadding: 12 }"
-    :ui="{
-      content: collapsed ? 'w-48' : 'w-(--reka-dropdown-menu-trigger-width)',
-    }"
+    :content="{ align: 'end', collisionPadding: 12 }"
   >
     <UButton
-      v-bind="{
-        ...user,
-        label: collapsed ? undefined : user?.name,
-        trailingIcon: collapsed ? undefined : 'lucide:chevrons-up-down',
-      }"
+      icon="lucide:palette"
       color="neutral"
       variant="ghost"
-      block
-      :square="collapsed"
       class="data-[state=open]:bg-elevated"
-      :ui="{
-        trailingIcon: 'text-dimmed',
-      }"
     />
 
     <template #chip-leading="{ item }">
@@ -36,10 +24,6 @@
 
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
-
-defineProps<{
-  collapsed?: boolean;
-}>();
 
 const colorMode = useColorMode();
 const appConfig = useAppConfig();
@@ -65,36 +49,7 @@ const colors = ["qbix", "gold"].concat([
 ]);
 const neutrals = ["slate", "gray", "zinc", "neutral", "stone"];
 
-const user = ref({
-  name: "Clayton Chew",
-  avatar: {
-    src: "https://github.com/claytonchew.png",
-    alt: "Clayton Chew",
-  },
-});
-
 const items = computed<DropdownMenuItem[][]>(() => [
-  [
-    {
-      type: "label",
-      label: user.value.name,
-      avatar: user.value.avatar,
-    },
-  ],
-  [
-    {
-      label: "Profile",
-      icon: "lucide:user",
-    },
-    {
-      label: "Billing",
-      icon: "lucide:credit-card",
-    },
-    {
-      label: "Settings",
-      icon: "lucide:settings",
-    },
-  ],
   [
     {
       label: "Theme",
@@ -187,12 +142,12 @@ const items = computed<DropdownMenuItem[][]>(() => [
         {
           label: "Landing",
           to: "/",
+          type: "checkbox",
+          checked: true,
         },
         {
           label: "Dashboard",
           to: "/dashboard",
-          checked: true,
-          type: "checkbox",
         },
       ],
     },
@@ -203,12 +158,6 @@ const items = computed<DropdownMenuItem[][]>(() => [
       icon: "simple-icons:github",
       to: "https://github.com/qbix-tech/monorepo-nuxt",
       target: "_blank",
-    },
-  ],
-  [
-    {
-      label: "Log out",
-      icon: "lucide:log-out",
     },
   ],
 ]);
