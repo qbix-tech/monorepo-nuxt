@@ -85,6 +85,12 @@ import { twMerge } from "tailwind-merge";
 
 defineOptions({ inheritAttrs: false });
 
+type DateRange = {
+  label: string;
+  duration?: Duration;
+  custom?: { start: (date: Date) => Date; end: (date: Date) => Date };
+};
+
 const { locale, t } = useI18n();
 const dateLocale = computed(() => {
   return locale.value === "en"
@@ -105,11 +111,7 @@ const props = withDefaults(
     class?: unknown;
     formatStartDate?: (locale: string) => string;
     formatEndDate?: (locale: string) => string;
-    ranges?: Array<{
-      label: string;
-      duration?: Duration;
-      custom?: { start: (date: Date) => Date; end: (date: Date) => Date };
-    }>;
+    ranges?: DateRange[];
     calendar?: CalendarProps<true, false>;
   }>(),
   {
@@ -176,11 +178,7 @@ const calendarRange = computed({
   },
 });
 
-const isRangeSelected = (range: {
-  label: string;
-  duration?: Duration;
-  custom?: { start: (date: Date) => Date; end: (date: Date) => Date };
-}) => {
+const isRangeSelected = (range: DateRange) => {
   if (!model.value.start || !model.value.end) return false;
   if (range.custom) {
     return (
@@ -194,13 +192,10 @@ const isRangeSelected = (range: {
       isSameDay(model.value.end, new Date())
     );
   }
+  return false;
 };
 
-const selectRange = (range: {
-  label: string;
-  duration?: Duration;
-  custom?: { start: (date: Date) => Date; end: (date: Date) => Date };
-}) => {
+const selectRange = (range: DateRange) => {
   if (range.custom) {
     model.value = {
       start: range.custom.start(new Date()),
