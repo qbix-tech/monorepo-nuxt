@@ -194,8 +194,8 @@ pnpm dev:layer:ui</pre
           <div
             class="bg-muted dark:bg-muted/20 flex h-40 flex-col items-center justify-center gap-8 rounded-md"
           >
-            <DatePicker v-model="date" variant="subtle" />
-            <DateRangePicker v-model="range" variant="subtle" />
+            <DatePicker v-model="date" variant="outline" />
+            <DateRangePicker v-model="range" variant="outline" />
           </div>
 
           <div class="flex flex-col gap-2">
