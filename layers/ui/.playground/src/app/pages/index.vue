@@ -9,14 +9,6 @@
   />
 
   <div class="relative">
-    <div class="hidden lg:block">
-      <ColorModeImage
-        light="/images/light/hero-line.svg"
-        dark="/images/dark/hero-line.svg"
-        class="pointer-events-none absolute top-0 left-0 h-[650px] object-cover pb-10"
-      />
-    </div>
-
     <PageHero
       title="@org/ui"
       description="Starting point for your project's UI."
@@ -35,6 +27,11 @@
           <UIcon name="simple-icons:opentofu" class="size-10 shrink-0" />
           <UIcon name="simple-icons:docker" class="size-10 shrink-0" />
           <UIcon name="simple-icons:kubernetes" class="size-10 shrink-0" />
+          <UIcon name="simple-icons:github" class="size-10 shrink-0" />
+          <UIcon name="simple-icons:prometheus" class="size-10 shrink-0" />
+          <UIcon name="simple-icons:dotnet" class="size-10 shrink-0" />
+          <UIcon name="simple-icons:cloudflare" class="size-10 shrink-0" />
+          <UIcon name="simple-icons:flutter" class="size-10 shrink-0" />
         </PageMarquee>
       </template>
     </PageHero>
@@ -354,17 +351,11 @@ onMounted(() => {
 
 const links = computed<ButtonProps[]>(() => [
   {
-    label: "Landing",
-    to: "/",
-    class: "rounded-full",
-    disabled: true,
-  },
-  {
-    label: "Dashboard",
+    label: "Switch to Dashboard",
     to: "/dashboard",
     variant: "subtle",
     class: "rounded-full",
-    trailingIcon: "lucide:arrow-right",
+    icon: "lucide:arrow-right-left",
   },
 ]);
 
