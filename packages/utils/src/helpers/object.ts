@@ -140,7 +140,8 @@ export const objectOmit = <T extends object, K extends keyof T>(
   obj: T,
   keys: K[],
 ): Omit<T, K> => {
-  const result = structuredClone(obj);
+  if (!obj || typeof obj !== "object") return {} as Omit<T, K>;
+  const result = { ...obj };
   for (const key of keys) {
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete result[key];

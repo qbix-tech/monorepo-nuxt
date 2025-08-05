@@ -193,6 +193,25 @@ pnpm dev:layer:ui</pre
         <PageCard
           container-class="p-4 sm:p-4"
           title-class="flex items-center gap-1"
+        >
+          <div
+            class="flex h-40 flex-col items-center justify-center gap-8 rounded-md bg-gray-50 dark:bg-neutral-800/30"
+          >
+            <DatePicker v-model="date" variant="subtle" />
+            <DateRangePicker v-model="range" variant="subtle" />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Date Picker </span>
+            <span class="text-muted text-sm">
+              Date picker components that can be used to select dates and
+              ranges.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
           class="overflow-hidden"
         >
           <div
@@ -315,6 +334,7 @@ pnpm dev:layer:ui</pre
 
 <script setup lang="ts">
 import type { ButtonProps } from "@nuxt/ui";
+import { sub } from "date-fns";
 
 definePageMeta({
   layout: "landing",
@@ -397,4 +417,10 @@ const codeExample = `export default defineNuxtConfig({
     ["@org/ui", { install: true }],
   ],
 });`;
+
+const date = ref(new Date());
+const range = ref({
+  start: sub(new Date(), { days: 7 }),
+  end: new Date(),
+});
 </script>

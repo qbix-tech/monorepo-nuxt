@@ -97,12 +97,20 @@
   </Menu>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends 'modal' | 'slideover' | 'drawer'">
 import { UDrawer, UModal, USlideover } from "#components";
 import type { DrawerProps, ModalProps, SlideoverProps } from "@nuxt/ui";
 import { defu } from "defu";
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
+
+type HeaderMenu<T> = T extends "modal"
+  ? ModalProps
+  : T extends "slideover"
+    ? SlideoverProps
+    : T extends "drawer"
+      ? DrawerProps
+      : never;
 
 defineOptions({ inheritAttrs: false });
 
@@ -113,8 +121,8 @@ const props = withDefaults(
     as?: PrimitiveProps["as"];
     title?: string;
     to?: string;
-    mode?: "modal" | "slideover" | "drawer";
-    menu?: ModalProps | SlideoverProps | DrawerProps;
+    mode?: T;
+    menu?: HeaderMenu<T>;
     menuIcon?: string;
     toggleSide?: "left" | "right";
     class?: unknown;
@@ -176,7 +184,7 @@ const defaultToggleClass = "lg:hidden";
 const defaultMenuHeaderClass =
   "px-4 sm:px-6 py-4 shrink-0 flex items-center justify-between gap-3 h-[--spacing(16)]";
 
-const Menu = computed(
+const Menu = computed<HeaderMenu<T>>(
   () =>
     ({
       slideover: USlideover,

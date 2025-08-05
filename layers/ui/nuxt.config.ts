@@ -5,6 +5,10 @@ const currentDir = dirname(fileURLToPath(import.meta.url));
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  alias: {
+    "#workspace": fileURLToPath(new URL("../../", import.meta.url)),
+  },
+
   $meta: { name: "ui" },
 
   extends: [["@org/i18n", { install: true }]],

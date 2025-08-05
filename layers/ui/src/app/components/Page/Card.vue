@@ -9,7 +9,7 @@
         variant === 'solid' ? 'bg-inverted text-inverted' : '',
         variant === 'outline' ? 'bg-default ring-default ring' : '',
         variant === 'soft' ? 'bg-elevated/50' : '',
-        variant === 'subtle' ? 'bg-elevated/50 ring-default' : '',
+        variant === 'subtle' ? 'bg-elevated/50 ring-default ring' : '',
         to ? 'transition' : '',
         to && variant === 'solid' ? 'hover:bg-inverted/90' : '',
         to && variant === 'outline' ? 'hover:bg-elevated/50' : '',

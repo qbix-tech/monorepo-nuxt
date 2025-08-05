@@ -5,9 +5,11 @@
   >
     <VisXYContainer
       :data="data"
+      :width="width"
       :height="height"
       :padding="padding"
       :svg-defs="svgDefs"
+      :class="props.class"
     >
       <VisTooltip
         v-if="!hideTooltip"
@@ -15,17 +17,17 @@
         :vertical-placement="Position.Top"
       />
       <template v-for="(i, iKey) in Object.keys(props.categories)" :key="iKey">
-        <VisArea
-          :x="(_: T, i: number) => i"
-          v-bind="accessors(i)"
-          :color="`url(#gradient${iKey}-${colors[iKey]})`"
-          :opacity="DEFAULT_OPACITY"
+        <VisLine
+          :x="props.xAccessor ?? ((_: T, i: number) => i)"
+          :y="props.yAccessor ?? ((d: T) => d[i as keyof T])"
+          :color="colors[iKey]"
           :curve-type="curveType ?? CurveType.MonotoneX"
         />
-        <VisLine
-          :x="(_: T, i: number) => i"
-          :y="(d: T) => d[i as keyof T]"
+        <VisArea
+          :x="props.xAccessor ?? ((_: T, i: number) => i)"
+          v-bind="accessors(i)"
           :color="colors[iKey]"
+          :opacity="DEFAULT_OPACITY"
           :curve-type="curveType ?? CurveType.MonotoneX"
         />
       </template>
@@ -33,6 +35,7 @@
       <VisAxis
         v-if="!hideXAxis"
         type="x"
+        :x="props.xAccessor ?? ((_: T, i: number) => i)"
         :tick-format="xFormatter"
         :label="xLabel"
         :label-margin="8"
@@ -55,7 +58,7 @@
       />
       <VisCrosshair
         v-if="!hideTooltip"
-        color="#666"
+        color="var(--ui-bg-inverted)"
         :template="generateTooltip"
       />
     </VisXYContainer>
@@ -87,8 +90,10 @@ import Tooltip from "./Tooltip.vue";
 // Constants for default values
 const DEFAULT_TICK_COUNT = 24;
 const DEFAULT_TICK_DIVISOR = 4;
-const DEFAULT_OPACITY = 0.5;
-const DEFAULT_COLOR = "#3b82f6";
+const DEFAULT_OPACITY = 0.1;
+const DEFAULT_COLOR = "var(--ui-primary)";
+
+defineOptions({ inheritAttrs: false });
 
 const props = withDefaults(
   defineProps<{
@@ -99,9 +104,13 @@ const props = withDefaults(
      */
     data: T[];
     /**
+     * The width of the chart in pixels.
+     */
+    width?: number;
+    /**
      * The height of the chart in pixels.
      */
-    height: number;
+    height?: number;
     /**
      * Optional label for the x-axis.
      */
@@ -115,10 +124,10 @@ const props = withDefaults(
      * Allows specifying individual padding values for the top, right, bottom, and left sides.
      */
     padding?: {
-      top: number;
-      right: number;
-      bottom: number;
-      left: number;
+      top?: number;
+      right?: number;
+      bottom?: number;
+      left?: number;
     };
     /**
      * This defines the visual representation and labels for each category in the chart's legend.
@@ -146,6 +155,10 @@ const props = withDefaults(
       | ((tick: number, i: number, ticks: number[]) => string)
       | ((tick: Date, i: number, ticks: Date[]) => string);
     /**
+     * The accessor function for the x-axis data.
+     */
+    xAccessor?: NumericAccessor<T>;
+    /**
      * @param {number|Date} tick - The value of the tick. This can be a number or a Date object depending on the scale of the y-axis.
      * @param {number} i - The index of the tick in the `ticks` array.
      * @param {(number[]|Date[])} ticks - An array of all tick values for the y-axis.
@@ -154,6 +167,18 @@ const props = withDefaults(
     yFormatter?:
       | ((tick: number, i: number, ticks: number[]) => string)
       | ((tick: Date, i: number, ticks: Date[]) => string);
+    /**
+     * The accessor function for the y-axis data.
+     */
+    yAccessor?: NumericAccessor<T>;
+    /**
+     * The tooltip title accessor function.
+     */
+    tooltipTitleAccessor?: (d: T) => string | number;
+    /**
+     * The function to format the y-axis values in the tooltip.
+     */
+    tooltipYFormatter?: (value: any) => string | number;
     /**
      * The type of curve to use for the area chart lines.
      * See `CurveType` for available options.
@@ -219,21 +244,31 @@ const props = withDefaults(
      * If `true`, hide the y-axis.
      */
     hideYAxis?: boolean;
+    /**
+     *
+     */
+    class?: unknown;
   }>(),
   {
+    width: undefined,
+    height: undefined,
     xLabel: undefined,
     yLabel: undefined,
     xFormatter: undefined,
+    xAccessor: (d: T, i: number) => i,
     yFormatter: undefined,
+    yAccessor: undefined,
+    tooltipTitleAccessor: undefined,
+    tooltipYFormatter: undefined,
     curveType: undefined,
     xExplicitTicks: undefined,
     legendPosition: undefined,
     padding: () => {
       return {
-        top: 5,
-        right: 5,
-        bottom: 5,
-        left: 5,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
       };
     },
     xNumTicks: (props) =>
@@ -244,6 +279,7 @@ const props = withDefaults(
       props.data.length > DEFAULT_TICK_COUNT
         ? DEFAULT_TICK_COUNT / DEFAULT_TICK_DIVISOR
         : props.data.length - 1,
+    class: undefined,
   },
 );
 
@@ -258,8 +294,8 @@ const generateTooltip = computed(() => (d: T) => {
     const app = createApp(Tooltip, {
       data: d,
       categories: props.categories,
-      toolTipTitle: getFirstPropertyValue(d),
-      yFormatter: props.yFormatter,
+      toolTipTitle: (props.tooltipTitleAccessor ?? getFirstPropertyValue)(d),
+      yFormatter: props.tooltipYFormatter,
     });
 
     const container = document.createElement("div");
@@ -319,3 +355,18 @@ const svgDefs = computed(() =>
 
 const LegendPositionTop = computed(() => props.legendPosition === "top");
 </script>
+
+<style scoped>
+.unovis-xy-container {
+  --vis-crosshair-line-stroke-color: var(--ui-primary);
+  --vis-crosshair-circle-stroke-color: var(--ui-bg);
+
+  --vis-axis-grid-color: var(--ui-border);
+  --vis-axis-tick-color: var(--ui-border);
+  --vis-axis-tick-label-color: var(--ui-text-dimmed);
+
+  --vis-tooltip-background-color: var(--ui-bg);
+  --vis-tooltip-border-color: var(--ui-border);
+  --vis-tooltip-text-color: var(--ui-text-highlighted);
+}
+</style>

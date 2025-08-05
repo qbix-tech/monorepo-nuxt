@@ -28,9 +28,21 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     langDir: "./locales",
     locales: [
-      { name: "English", code: "en", language: "en", file: "en.ts" },
-      { name: "Bahasa Malaysia", code: "ms", language: "ms", file: "ms.ts" },
-      { name: "中文", code: "zh", language: "zh", file: "zh.ts" },
+      {
+        name: "English",
+        code: "en",
+        language: "en",
+        dir: "ltr",
+        file: "en.ts",
+      },
+      {
+        name: "Bahasa Malaysia",
+        code: "ms",
+        language: "ms",
+        dir: "ltr",
+        file: "ms.ts",
+      },
+      { name: "中文", code: "zh", language: "zh", dir: "ltr", file: "zh.ts" },
     ],
     experimental: {
       localeDetector: "localeDetector.ts",
