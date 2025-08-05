@@ -9,7 +9,7 @@
       footer-class="lg:border-t lg:border-default"
     >
       <template #header="{ collapsed }">
-        <DashboardTeamsMenu :collapsed="collapsed" />
+        <TeamsMenu :collapsed="collapsed" />
       </template>
 
       <template #default="{ collapsed }">
@@ -36,7 +36,7 @@
       </template>
 
       <template #footer="{ collapsed }">
-        <DashboardUserMenu :collapsed="collapsed" />
+        <UserMenu :collapsed="collapsed" />
       </template>
     </DashboardSidebar>
 
@@ -44,7 +44,7 @@
 
     <slot />
 
-    <DashboardNotificationsSlideover />
+    <NotificationsSlideover />
   </Dashboard>
 </template>
 
@@ -61,6 +61,7 @@ const links = computed<NavigationMenuItem[][]>(() => [
       label: "Home",
       icon: "lucide:house",
       to: "/dashboard",
+      exact: true,
       onSelect: () => {
         open.value = false;
       },
@@ -68,7 +69,7 @@ const links = computed<NavigationMenuItem[][]>(() => [
     {
       label: "Inbox",
       icon: "lucide:inbox",
-      to: "/inbox",
+      to: "/dashboard/inbox",
       badge: "4",
       onSelect: () => {
         open.value = false;
@@ -77,21 +78,21 @@ const links = computed<NavigationMenuItem[][]>(() => [
     {
       label: "Customers",
       icon: "lucide:users",
-      to: "/customers",
+      to: "/dashboard/customers",
       onSelect: () => {
         open.value = false;
       },
     },
     {
       label: "Settings",
-      to: "/settings",
+      to: "/dashboard/settings",
       icon: "lucide:settings",
       defaultOpen: true,
       type: "trigger",
       children: [
         {
           label: "General",
-          to: "/settings",
+          to: "/dashboard/settings",
           exact: true,
           onSelect: () => {
             open.value = false;
@@ -99,21 +100,21 @@ const links = computed<NavigationMenuItem[][]>(() => [
         },
         {
           label: "Members",
-          to: "/settings/members",
+          to: "/dashboard/settings/members",
           onSelect: () => {
             open.value = false;
           },
         },
         {
           label: "Notifications",
-          to: "/settings/notifications",
+          to: "/dashboard/settings/notifications",
           onSelect: () => {
             open.value = false;
           },
         },
         {
           label: "Security",
-          to: "/settings/security",
+          to: "/dashboard/settings/security",
           onSelect: () => {
             open.value = false;
           },
@@ -124,7 +125,7 @@ const links = computed<NavigationMenuItem[][]>(() => [
   [
     {
       label: "Switch to Landing",
-      icon: "lucide:layout-template",
+      icon: "lucide:arrow-right-left",
       to: "/",
     },
   ],

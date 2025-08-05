@@ -10,7 +10,7 @@
       v-bind="{
         ...user,
         label: collapsed ? undefined : user?.name,
-        trailingIcon: collapsed ? undefined : 'i-lucide-chevrons-up-down',
+        trailingIcon: collapsed ? undefined : 'lucide:chevrons-up-down',
       }"
       color="neutral"
       variant="ghost"
@@ -93,7 +93,6 @@ const items = computed<DropdownMenuItem[][]>(() => [
     {
       label: "Settings",
       icon: "lucide:settings",
-      to: "/settings",
     },
   ],
   [

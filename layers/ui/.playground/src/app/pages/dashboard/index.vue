@@ -15,13 +15,13 @@
               @click="isNotificationsSlideoverOpen = true"
             >
               <UChip color="error" inset>
-                <UIcon name="i-lucide-bell" class="size-5 shrink-0" />
+                <UIcon name="lucide:bell" class="size-5 shrink-0" />
               </UChip>
             </UButton>
           </UTooltip>
 
           <UDropdownMenu :items="items">
-            <UButton icon="i-lucide-plus" size="md" class="rounded-full" />
+            <UButton icon="lucide:plus" size="md" class="rounded-full" />
           </UDropdownMenu>
         </template>
       </DashboardNavbar>
@@ -49,9 +49,9 @@
     </template>
 
     <template #body>
-      <DashboardHomeStats :period="period" :range="range" />
-      <DashboardHomeChart :period="period" :range="range" />
-      <DashboardHomeSales :period="period" :range="range" />
+      <HomeStats :period="period" :range="range" />
+      <HomeChart :period="period" :range="range" />
+      <HomeSales :period="period" :range="range" />
     </template>
   </DashboardPanel>
 </template>
@@ -67,13 +67,13 @@ const items = [
   [
     {
       label: "New mail",
-      icon: "i-lucide-send",
-      to: "/inbox",
+      icon: "lucide:send",
+      to: "/dashboard/inbox",
     },
     {
       label: "New customer",
-      icon: "i-lucide-user-plus",
-      to: "/customers",
+      icon: "lucide:user-plus",
+      to: "/dashboard/customers",
     },
   ],
 ] satisfies DropdownMenuItem[][];
