@@ -157,7 +157,7 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="flex h-40 items-center justify-center gap-8 rounded-md bg-gray-50 dark:bg-neutral-800/30"
+            class="bg-muted dark:bg-muted/20 flex h-40 items-center justify-center gap-8 rounded-md"
           >
             <ColorModeButton />
             <ColorModeSelect />
@@ -177,7 +177,7 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="flex h-40 items-center justify-center gap-8 rounded-md bg-gray-50 dark:bg-neutral-800/30"
+            class="bg-muted dark:bg-muted/20 flex h-40 items-center justify-center gap-8 rounded-md"
           >
             <LocaleSelect />
           </div>
@@ -195,7 +195,7 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="flex h-40 flex-col items-center justify-center gap-8 rounded-md bg-gray-50 dark:bg-neutral-800/30"
+            class="bg-muted dark:bg-muted/20 flex h-40 flex-col items-center justify-center gap-8 rounded-md"
           >
             <DatePicker v-model="date" variant="subtle" />
             <DateRangePicker v-model="range" variant="subtle" />
@@ -214,9 +214,7 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
           class="overflow-hidden"
         >
-          <div
-            class="relative h-40 rounded-md bg-gray-50 dark:bg-neutral-800/30"
-          >
+          <div class="bg-muted dark:bg-muted/20 relative h-40 rounded-md">
             <LazyBackgroundBubbles :bubble-count="200" />
           </div>
 
@@ -233,7 +231,7 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="flex h-40 items-center justify-center gap-8 rounded-md bg-gray-50 dark:bg-neutral-800/30"
+            class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-8 rounded-md"
           >
             <LoadingSpinner />
           </div>
@@ -251,7 +249,7 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="relative h-40 overflow-hidden rounded-md bg-gray-50 dark:bg-neutral-800/30"
+            class="dark:bg-muted/20 bg-muted relative h-40 overflow-hidden rounded-md"
           >
             <ImageLightbox
               src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&h=500&q=90"
@@ -272,7 +270,7 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="relative h-40 overflow-hidden rounded-md bg-gray-50 dark:bg-neutral-800/30"
+            class="dark:bg-muted/20 bg-muted relative h-40 overflow-hidden rounded-md"
           >
             <ColorModeImage
               light="/images/light/chart.svg"
