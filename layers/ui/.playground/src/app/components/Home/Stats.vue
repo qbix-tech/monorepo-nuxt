@@ -5,7 +5,7 @@
       :key="index"
       :icon="stat.icon"
       :title="stat.title"
-      to="/customers"
+      to="/dashboard/customers"
       variant="subtle"
       class="first:rounded-l-lg last:rounded-r-lg hover:z-1 lg:rounded-none"
       container-class="gap-y-1.5"

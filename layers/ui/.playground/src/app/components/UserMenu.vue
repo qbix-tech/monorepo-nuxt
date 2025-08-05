@@ -44,7 +44,7 @@ defineProps<{
 const colorMode = useColorMode();
 const appConfig = useAppConfig();
 
-const colors = ["qbix"].concat([
+const colors = ["qbix", "gold"].concat([
   "red",
   "orange",
   "amber",
