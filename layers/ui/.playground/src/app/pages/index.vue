@@ -209,6 +209,33 @@ pnpm dev:layer:ui</pre
         <PageCard
           container-class="p-4 sm:p-4"
           title-class="flex items-center gap-1"
+        >
+          <div
+            class="bg-muted dark:bg-muted/20 flex h-40 flex-col items-center justify-center gap-8 rounded-md"
+          >
+            <InputCurrency
+              v-model="currencyInput"
+              variant="soft"
+              size="xl"
+              :ui="{
+                base: 'ps-14',
+              }"
+            >
+              <template #leading> USD </template>
+            </InputCurrency>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Currency Input </span>
+            <span class="text-muted text-sm">
+              A currency UInput-compatible component that resembles currency
+              unit, with decimal and thousands separators.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
           class="overflow-hidden"
         >
           <div class="bg-muted dark:bg-muted/20 relative h-40 rounded-md">
@@ -228,13 +255,25 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-8 rounded-md p-4"
+            class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-8 rounded-md p-12"
           >
-            <SafeTemplate v-bind="{ data, status, error, refresh }">
+            <SafeTemplate v-bind="{ data, status, error, refresh }" mode="text">
               <template #default="{ data: safeData }">
-                <span class="text-success">
-                  {{ safeData }}
-                </span>
+                <UCard>
+                  <div class="flex gap-2">
+                    <UAvatar
+                      :src="safeData.avatar.src"
+                      :alt="safeData.name"
+                      size="lg"
+                    />
+                    <div>
+                      <span class="block text-sm">{{ safeData.name }}</span>
+                      <span class="text-muted block text-xs"
+                        >@{{ safeData.username }}</span
+                      >
+                    </div>
+                  </div>
+                </UCard>
               </template>
             </SafeTemplate>
           </div>
@@ -605,14 +644,27 @@ const range = ref({
   end: new Date(),
 });
 
-const { data, status, error, refresh } = useFetch("/api/simulate", {
-  query: {
-    success_rate: 0.5,
-    delay: 2000,
-    response: "OK",
+const currencyInput = ref<string | undefined>(undefined);
+
+const responsePayload = {
+  name: "Clayton Chew",
+  username: "claytonchew",
+  avatar: { src: "https://github.com/claytonchew.png" },
+};
+const { data, status, error, refresh } = useFetch<typeof responsePayload>(
+  "/api/simulate",
+  {
+    method: "POST",
+    query: {
+      success_rate: 0.5,
+      delay: 2000,
+    },
+    body: {
+      response: responsePayload,
+    },
+    retry: false,
   },
-  retry: false,
-});
+);
 onMounted(() => {
   const simulateInterval = setInterval(() => {
     refresh();

@@ -7,22 +7,20 @@
 
   <template v-else-if="status === 'error'">
     <slot name="error" v-bind="props">
-      <template v-if="mini">
-        <div class="flex items-center justify-start gap-1.5">
-          <span class="text-error text-xs text-pretty">
-            <UIcon name="lucide:circle-alert" class="size-4 translate-y-0.5" />
-            {{ t("ui.safeTemplate.error.description") }}
-          </span>
+      <template v-if="mode === 'text'">
+        <span class="text-error text-xs text-pretty">
+          <UIcon name="lucide:circle-alert" class="size-4 translate-y-1" />
+          {{ t("ui.safeTemplate.error.description") }}
           <UButton
-            class="shrink-0"
+            as="a"
+            class="shrink-0 cursor-pointer underline"
             :label="t('ui.safeTemplate.error.retry')"
-            icon="lucide:refresh-cw"
             color="neutral"
-            variant="subtle"
-            size="sm"
-            @click="retry || refresh"
+            variant="link"
+            size="xs"
+            @click="onRetry"
           />
-        </div>
+        </span>
       </template>
       <template v-else>
         <UAlert
@@ -40,7 +38,7 @@
                     color: 'error',
                     variant: 'subtle',
                     size: 'sm',
-                    onClick: retry || refresh,
+                    onClick: onRetry,
                   },
                 ]
               : []
@@ -69,6 +67,14 @@ const props = defineProps<{
   refresh?: () => void;
   loading?: boolean;
   retry?: () => void;
-  mini?: boolean;
+  mode?: "text" | "alert";
 }>();
+
+const onRetry = () => {
+  if (props.retry) {
+    props.retry();
+  } else if (props.refresh) {
+    props.refresh();
+  }
+};
 </script>
