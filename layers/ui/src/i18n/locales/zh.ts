@@ -1,5 +1,8 @@
 export default {
   ui: {
+    cardAction: {
+      close: "关闭",
+    },
     dashboard: {
       search: {
         label: {

@@ -1,5 +1,8 @@
 export default {
   ui: {
+    cardAction: {
+      close: "Tutup",
+    },
     dashboard: {
       search: {
         label: {

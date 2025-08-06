@@ -6,6 +6,7 @@
     "preinstall": "npx only-allow pnpm",
     "build:simple": "nx run @org/simple:build",
     "build:database-manager": "nx run @org/database-manager:build",
+    "build:packages": "nx run-many --projects=packages/* --target=build --parallel 10 --output-style stream",
     "preview:simple": "nx run @org/simple:preview",
     "preview:database-manager": "nx run @org/database-manager:preview",
     "dev": "pnpm dev:all",

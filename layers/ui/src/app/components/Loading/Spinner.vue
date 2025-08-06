@@ -5,7 +5,7 @@
   >
     <UIcon
       :name="appConfig.ui.icons.loading"
-      class="animate-spin text-neutral-300 dark:text-neutral-600"
+      class="text-dimmed/60 animate-spin"
       :style="`width:${props.size};height:${props.size};`"
     />
   </div>
