@@ -42,5 +42,5 @@ export const hasNumber = (string: string) => {
 };
 
 export const hasSpecialCharacter = (string: string) => {
-  return /[-+=:;'"_!@#$£¥€%^&*.,?~`[\]<>{}()|/\\ \s]/.test(string);
+  return /[\W_]/.test(string);
 };

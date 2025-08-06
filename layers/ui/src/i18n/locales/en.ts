@@ -3,6 +3,20 @@ export default {
     cardAction: {
       close: "Close",
     },
+    colorMode: {
+      system: "System",
+      light: "Light",
+      dark: "Dark",
+      switchToLight: "Switch to light mode",
+      switchToDark: "Switch to dark mode",
+    },
+    cookieConsent: {
+      title: "Cookie Consent",
+      description:
+        "We use first-party cookies to enhance your experience on our website.",
+      accept: "Accept",
+      optOut: "Opt out",
+    },
     dashboard: {
       search: {
         label: {
@@ -46,19 +60,27 @@ export default {
         open: "Open",
       },
     },
-    colorMode: {
-      system: "System",
-      light: "Light",
-      dark: "Dark",
-      switchToLight: "Switch to light mode",
-      switchToDark: "Switch to dark mode",
+    safeTemplate: {
+      error: {
+        title: "Unexpected Error",
+        description: "Unable to retrieve resource. Please try again.",
+        retry: "Retry",
+      },
     },
-    cookieConsent: {
-      title: "Cookie Consent",
-      description:
-        "We use first-party cookies to enhance your experience on our website.",
-      accept: "Accept",
-      optOut: "Opt out",
+    passwordStrengthIndicator: {
+      title: "Password must contain:",
+      ariaLabel: "Password requirements.",
+      atLeastXCharacters:
+        "At least 1 character. | At least {count} characters.",
+      atLeastXNumbers: "At least 1 number | At least {count} numbers.",
+      atLeastXLowercaseLetters:
+        "At least 1 lowercase letter. | At least {count} lowercase letter.",
+      atLeastXUppercaseLetters:
+        "At least 1 uppercase letter. | At least {count} uppercase letter.",
+      atLeastXSpecialCharacters:
+        "At least 1 special character. | At least {count} special characters.",
+      requirementMet: "Requirement met",
+      requirementNotMet: "Requirement not met",
     },
   },
 };

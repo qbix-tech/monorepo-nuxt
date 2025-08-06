@@ -707,6 +707,6 @@ Emergency: (555) 987-6544`,
   },
 ];
 
-export default eventHandler(async () => {
+export default defineEventHandler(async () => {
   return mails;
 });

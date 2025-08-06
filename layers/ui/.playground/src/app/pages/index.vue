@@ -228,16 +228,44 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
-            class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-8 rounded-md"
+            class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-8 rounded-md p-4"
           >
-            <LoadingSpinner />
+            <SafeTemplate v-bind="{ data, status, error, refresh }">
+              <template #default="{ data: safeData }">
+                <span class="text-success">
+                  {{ safeData }}
+                </span>
+              </template>
+            </SafeTemplate>
           </div>
 
           <div class="flex flex-col gap-2">
-            <span class="text-lg font-semibold"> Safe Containers </span>
+            <span class="text-lg font-semibold"> Safe Template </span>
             <span class="text-muted text-sm">
-              Easily incorporate loader and data-fetch-safe components that can
-              be used to indicate data fetching state in your application.
+              Easily handle type-safe bridge between asynchronous data fetching
+              and contents.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
+        >
+          <div
+            class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-2 rounded-md px-8 py-2"
+          >
+            <FlashInfo class="size-16" pulse />
+            <FlashSuccess class="size-16" pulse />
+            <FlashWarning class="size-16" pulse />
+            <FlashError class="size-16" pulse />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Flash Status </span>
+            <span class="text-muted text-sm">
+              Flash status component used to communicate the outcome of a
+              critical user action – whether it's a triumphant success or a
+              serious error.
             </span>
           </div>
         </PageCard>
@@ -252,9 +280,9 @@ pnpm dev:layer:ui</pre
               title-class="text-xs"
               :ui="{
                 root: 'overflow-hidden',
-                header: 'p-2 sm:px-3 sm:py-2',
-                body: 'p-2 sm:px-3 sm:py-4 h-16',
-                footer: 'p-2 sm:px-3 sm:py-2',
+                header: 'px-3 py-2 sm:px-3 sm:py-2',
+                body: 'px-3 py-4 sm:px-3 sm:py-4 h-16',
+                footer: 'px-3 py-2 sm:px-3 sm:py-2',
               }"
             >
               <template #body-loading>
@@ -298,6 +326,28 @@ pnpm dev:layer:ui</pre
           title-class="flex items-center gap-1"
         >
           <div
+            class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center rounded-md px-8 py-2"
+          >
+            <TransitionFade :duration-in-seconds="0.3" mode="out-in">
+              <FlashInfo v-if="transitionCount % 4 === 0" />
+              <FlashSuccess v-else-if="transitionCount % 4 === 1" />
+              <FlashWarning v-else-if="transitionCount % 4 === 2" />
+              <FlashError v-else-if="transitionCount % 4 === 3" />
+            </TransitionFade>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Easy Transitions </span>
+            <span class="text-muted text-sm">
+              Easily define transitions between components.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
+        >
+          <div
             class="dark:bg-muted/20 bg-muted relative h-40 overflow-hidden rounded-md"
           >
             <ImageLightbox
@@ -332,6 +382,96 @@ pnpm dev:layer:ui</pre
             <span class="text-muted text-sm">
               A collection of ready-to-use chart components that can be used to
               display data in a visual format.
+            </span>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
+        >
+          <div
+            class="dark:bg-muted/20 bg-muted relative h-40 overflow-hidden rounded-md"
+          >
+            <PasswordStrengthIndicator
+              ref="passwordIndicatorRef"
+              v-model="password"
+              progress-size="lg"
+              title-class="px-6"
+              list-class="px-6"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold">
+              Password Strength Indicator
+            </span>
+            <UFormField>
+              <UInput
+                v-model="password"
+                placeholder="Password"
+                :color="passwordIndicatorRef?.color"
+                :type="show ? 'text' : 'password'"
+                :aria-invalid="!passwordIndicatorRef?.isValid"
+                aria-describedby="password-strength"
+                :ui="{ trailing: 'pe-1' }"
+                class="w-full"
+              >
+                <template #trailing>
+                  <UButton
+                    color="neutral"
+                    variant="link"
+                    size="sm"
+                    :icon="show ? 'i-lucide-eye-off' : 'i-lucide-eye'"
+                    :aria-label="show ? 'Hide password' : 'Show password'"
+                    :aria-pressed="show"
+                    aria-controls="password"
+                    @click="show = !show"
+                  />
+                </template>
+              </UInput>
+            </UFormField>
+          </div>
+        </PageCard>
+        <PageCard
+          container-class="p-4 sm:p-4"
+          title-class="flex items-center gap-1"
+        >
+          <div
+            class="dark:bg-muted/20 bg-muted relative flex h-40 overflow-hidden rounded-md"
+          >
+            <PageMarquee
+              orientation="vertical"
+              class="w-full [--gap:--spacing(4)] before:h-1/5 after:h-1/5"
+            >
+              <UCard
+                v-for="(item, index) in testimonials"
+                :key="index"
+                :ui="{
+                  body: 'space-y-2 sm:px-3 sm:py-3',
+                  root: 'w-full max-w-80 sm:w-60',
+                }"
+              >
+                <div class="flex gap-1.5">
+                  <UAvatar :src="item.avatar.src" :alt="item.name" />
+                  <div>
+                    <span class="block text-xs">{{ item.name }}</span>
+                    <span class="text-muted block text-xs"
+                      >@{{ item.username }}</span
+                    >
+                  </div>
+                </div>
+                <p class="text-xs">
+                  {{ item.feedback }}
+                </p>
+              </UCard>
+            </PageMarquee>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-semibold"> Marquee </span>
+            <span class="text-muted text-sm">
+              A marquee component that can be used to display a scrolling text,
+              images or a component.
             </span>
           </div>
         </PageCard>
@@ -465,6 +605,23 @@ const range = ref({
   end: new Date(),
 });
 
+const { data, status, error, refresh } = useFetch("/api/simulate", {
+  query: {
+    success_rate: 0.5,
+    delay: 2000,
+    response: "OK",
+  },
+  retry: false,
+});
+onMounted(() => {
+  const simulateInterval = setInterval(() => {
+    refresh();
+  }, 5000);
+  onBeforeUnmount(() => {
+    clearInterval(simulateInterval);
+  });
+});
+
 const cardActionState = ref({
   currentStep: 1,
   close: false,
@@ -476,6 +633,93 @@ const cardActionNext = () => {
   cardActionState.value.currentStep = cardActionState.value.currentStep + 1;
   setTimeout(() => {
     cardActionState.value.loading = false;
-  }, 500);
+  }, 1000);
 };
+onMounted(() => {
+  const simulateActionInterval = setInterval(() => {
+    cardActionNext();
+  }, 3000);
+  onBeforeMount(() => {
+    clearInterval(simulateActionInterval);
+  });
+});
+
+const transitionCount = ref(1);
+onMounted(() => {
+  const simulateTransitionInterval = setInterval(() => {
+    transitionCount.value = transitionCount.value + 1;
+  }, 2000);
+  onBeforeMount(() => {
+    clearInterval(simulateTransitionInterval);
+  });
+});
+
+const password = ref("");
+const show = ref(false);
+const passwordIndicatorRef = useTemplateRef("passwordIndicatorRef");
+
+const testimonials = [
+  {
+    name: "Clayton Chew",
+    username: "claytonchew",
+    avatar: { src: "https://github.com/claytonchew.png" },
+    feedback:
+      "@org/ui has been a game-changer for our team. The components are easy to use and integrate seamlessly with our existing Nuxt 3 project.",
+  },
+  {
+    name: "Ronnie Chew",
+    username: "ronnie-chew",
+    avatar: { src: "https://github.com/ronnie-chew.png" },
+    feedback:
+      "The design system provided by @org/ui is fantastic. It has helped us maintain a consistent look and feel across our application.",
+  },
+  {
+    name: "Yeoh Lee Ming",
+    username: "leeming988QM",
+    avatar: { src: "https://github.com/leeming988QM.png" },
+    feedback:
+      "@org/ui has made it so much easier to build responsive and accessible components. The documentation is also top-notch!",
+  },
+  {
+    name: "Ong Ming Yen",
+    username: "ongmingyen",
+    avatar: {
+      src: "https://github.com/ongmingyen.png",
+    },
+    feedback:
+      "I love how @org/ui provides a wide range of components that are ready to use. It has saved us a lot of development time.",
+  },
+  {
+    name: "Steven Lim",
+    username: "steven-QM",
+    avatar: {
+      src: "https://github.com/steven-QM.png",
+    },
+    feedback:
+      "The @org/ui library is a great addition to our Nuxt 3 project. The components are well-designed and easy to customize.",
+  },
+  {
+    name: "Ang Chee Keat",
+    username: "CheeKeat-QM",
+    avatar: {
+      src: "https://github.com/CheeKeat-QM.png",
+    },
+    feedback:
+      "Using @org/ui has significantly improved our development workflow. The components are intuitive and easy to work with.",
+  },
+  {
+    name: "Reynold Chong",
+    username: "reynoldcky",
+    avatar: { src: "https://github.com/reynoldcky.png" },
+    feedback:
+      "The @org/ui components are not only visually appealing but also highly functional. They have enhanced the user experience of our application.",
+  },
+  {
+    name: "Zulfidly Zulkifli",
+    username: "fidlyqm",
+    avatar: { src: "https://github.com/fidlyqm.png" },
+    feedback:
+      "I appreciate the effort put into creating @org/ui. The components are well-optimized and perform excellently in our Nuxt 3 application.",
+  },
+];
 </script>

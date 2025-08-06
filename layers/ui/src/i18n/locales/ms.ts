@@ -3,6 +3,20 @@ export default {
     cardAction: {
       close: "Tutup",
     },
+    colorMode: {
+      system: "Sistem",
+      light: "Cerah",
+      dark: "Gelap",
+      switchToLight: "Tukar ke mod cerah",
+      switchToDark: "Tukar ke mod gelap",
+    },
+    cookieConsent: {
+      title: "Persetujuan Kuki",
+      description:
+        "Kami menggunakan kuki pihak pertama untuk meningkatkan pengalaman anda di laman web kami.",
+      accept: "Terima",
+      optOut: "Tolak",
+    },
     dashboard: {
       search: {
         label: {
@@ -46,19 +60,23 @@ export default {
         open: "Buka",
       },
     },
-    colorMode: {
-      system: "Sistem",
-      light: "Cerah",
-      dark: "Gelap",
-      switchToLight: "Tukar ke mod cerah",
-      switchToDark: "Tukar ke mod gelap",
+    safeTemplate: {
+      error: {
+        title: "Ralat Tidak Dijangka",
+        description: "Tidak dapat memuat turun sumber. Sila cuba sekali lagi.",
+        retry: "Cuba Lagi",
+      },
     },
-    cookieConsent: {
-      title: "Persetujuan Kuki",
-      description:
-        "Kami menggunakan kuki pihak pertama untuk meningkatkan pengalaman anda di laman web kami.",
-      accept: "Terima",
-      optOut: "Tolak",
+    passwordStrengthIndicator: {
+      title: "Kata laluan mesti mengandungi:",
+      ariaLabel: "Keperluan kata laluan.",
+      atLeastXCharacters: "Sekurang-kurangnya {count} aksara.",
+      atLeastXNumbers: "Sekurang-kurangnya {count} nombor.",
+      atLeastXLowercaseLetters: "Sekurang-kurangnya {count} huruf kecil.",
+      atLeastXUppercaseLetters: "Sekurang-kurangnya {count} huruf besar.",
+      atLeastXSpecialCharacters: "Sekurang-kurangnya {count} aksara khas.",
+      requirementMet: "Keperluan dipenuhi",
+      requirementNotMet: "Keperluan tidak dipenuhi",
     },
   },
 };

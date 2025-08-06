@@ -203,6 +203,6 @@ const customers: User[] = [
   },
 ];
 
-export default eventHandler(async () => {
+export default defineEventHandler(async () => {
   return customers;
 });

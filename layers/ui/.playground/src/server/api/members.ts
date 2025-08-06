@@ -55,6 +55,6 @@ const members = [
   },
 ];
 
-export default eventHandler(async () => {
+export default defineEventHandler(async () => {
   return members;
 });

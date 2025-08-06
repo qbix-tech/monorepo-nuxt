@@ -18,7 +18,7 @@ const props = withDefaults(
     size?: string;
   }>(),
   {
-    minHeight: "4rem",
+    minHeight: "0",
     size: "2rem",
   },
 );
