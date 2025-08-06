@@ -17,8 +17,16 @@
 import { twMerge } from "tailwind-merge";
 
 const props = defineProps<{
+  /**
+   * Whether to show a pulsing effect around the icon.
+   * @default false
+   */
   pulse?: boolean;
   class?: unknown;
+  /**
+   * The icon to display.
+   * @defaultvalue 'lucide:circle-x'
+   */
   icon?: string;
 }>();
 </script>

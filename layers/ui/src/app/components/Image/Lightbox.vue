@@ -26,7 +26,13 @@ import { twMerge } from "tailwind-merge";
 defineOptions({ inheritAttrs: false });
 
 const props = defineProps<{
+  /**
+   * The image source URL.
+   */
   src?: string;
+  /**
+   * The alternative text for the image.
+   */
   alt?: string;
   ui?: ModalProps["ui"];
 }>();

@@ -19,6 +19,10 @@ import type { MaskInputOptions } from "maska";
 import { twMerge } from "tailwind-merge";
 
 export interface CurrencyInputProps extends /* @vue-ignore */ InputProps {
+  /**
+   * The thousands separator to use in the input.
+   * @defaultvalue ","
+   */
   separator?: string;
 }
 </script>
