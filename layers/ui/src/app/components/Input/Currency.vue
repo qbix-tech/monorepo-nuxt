@@ -45,16 +45,20 @@ const maskedModelValue = computed({
 });
 
 const options = ref<MaskInputOptions>({
-  mask: `9${props.separator ?? ","}99#.##`,
+  mask: `9${props.separator ?? ","}99*.##`,
   tokens: {
     "9": {
       pattern: /[0-9]/,
       transform: (value) => value.replace(/[^0-9]/g, ""),
       repeated: true,
     },
+    "*": {
+      pattern: /[0-9]/,
+      transform: (value) => value.replace(/[^0-9]/g, ""),
+    },
     "#": {
-      pattern: /[0-9.]/,
-      transform: (value) => value.replace(/[^0-9.]/g, ""),
+      pattern: /[0-9]/,
+      transform: (value) => value.replace(/[^0-9]/g, ""),
     },
   },
   reversed: true,
