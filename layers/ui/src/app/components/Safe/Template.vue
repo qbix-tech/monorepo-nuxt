@@ -53,22 +53,56 @@
   </template>
 </template>
 
-<script setup lang="ts" generic="T">
+<script lang="ts">
 import type { FetchError } from "ofetch";
 import type { AsyncDataRequestStatus } from "nuxt/app";
 
+export interface SafeTemplateProps<T> {
+  /**
+   * The data to be displayed when the request is successful.
+   * This should be the data you obtain from `useFetch()`.
+   */
+  data: T;
+  /**
+   * The fetch error object if the request fails.
+   * This should be the error object you obtain from `useFetch()`.
+   */
+  error: FetchError;
+  /**
+   * The status of the request.
+   * This should be the status you obtain from `useFetch()`.
+   */
+  status: AsyncDataRequestStatus;
+  /**
+   * Whether to prevent the loading state from being displayed.
+   * Useful if you want to prevent showing loading state on refresh or retry upon successful first fetch.
+   */
+  preventLoading?: boolean;
+  /**
+   * A function to call to refresh the data.
+   * This should be the function you obtain from `useFetch()`.
+   */
+  refresh?: () => void;
+  /**
+   * Whether to show a loading spinner, regardless of the status.
+   */
+  loading?: boolean;
+  /**
+   * A function to call to retry the request. It has greater priority than `refresh`.
+   */
+  retry?: () => void;
+  /**
+   * On error, how to display the error.
+   * @defaultValue 'alert'
+   */
+  mode?: "text" | "alert";
+}
+</script>
+
+<script setup lang="ts" generic="T">
 const { t } = useI18n();
 
-const props = defineProps<{
-  data?: T;
-  error?: FetchError;
-  status?: AsyncDataRequestStatus;
-  preventLoading?: boolean;
-  refresh?: () => void;
-  loading?: boolean;
-  retry?: () => void;
-  mode?: "text" | "alert";
-}>();
+const props = defineProps<SafeTemplateProps<T>>();
 
 const onRetry = () => {
   if (props.retry) {

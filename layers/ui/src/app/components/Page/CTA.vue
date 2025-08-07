@@ -134,49 +134,69 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import type { ButtonProps } from "@nuxt/ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    title?: string;
-    description?: string;
-    orientation?: "horizontal" | "vertical";
-    reverse?: boolean;
-    variant?: "solid" | "outline" | "soft" | "subtle" | "naked";
-    links?: ButtonProps[];
-    class?: unknown;
-    containerClass?: unknown;
-    wrapperClass?: unknown;
-    headerClass?: unknown;
-    titleClass?: unknown;
-    descriptionClass?: unknown;
-    bodyClass?: unknown;
-    footerClass?: unknown;
-    linksClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    title: "",
-    description: "",
-    orientation: "vertical",
-    reverse: false,
-    variant: "outline",
-    links: undefined,
-    class: undefined,
-    containerClass: undefined,
-    wrapperClass: undefined,
-    headerClass: undefined,
-    titleClass: undefined,
-    descriptionClass: undefined,
-    bodyClass: undefined,
-    footerClass: undefined,
-    linksClass: undefined,
-  },
-);
+export interface PageCTAProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  title?: string;
+  description?: string;
+  /**
+   * The orientation of the page cta.
+   * @defaultValue 'vertical'
+   */
+  orientation?: "horizontal" | "vertical";
+  /**
+   * Reverse the order of the default slot.
+   * @defaultValue false
+   */
+  reverse?: boolean;
+  /**
+   * @defaultValue 'outline'
+   */
+  variant?: "solid" | "outline" | "soft" | "subtle" | "naked";
+  /**
+   * Display a list of Button under the description.
+   * `{ size: 'lg' }`{lang="ts-type"}
+   */
+  links?: ButtonProps[];
+  class?: unknown;
+  containerClass?: unknown;
+  wrapperClass?: unknown;
+  headerClass?: unknown;
+  titleClass?: unknown;
+  descriptionClass?: unknown;
+  bodyClass?: unknown;
+  footerClass?: unknown;
+  linksClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<PageCTAProps>(), {
+  as: "div",
+  title: "",
+  description: "",
+  orientation: "vertical",
+  reverse: false,
+  variant: "outline",
+  links: undefined,
+  class: undefined,
+  containerClass: undefined,
+  wrapperClass: undefined,
+  headerClass: undefined,
+  titleClass: undefined,
+  descriptionClass: undefined,
+  bodyClass: undefined,
+  footerClass: undefined,
+  linksClass: undefined,
+});
 
 const slots = defineSlots();
 

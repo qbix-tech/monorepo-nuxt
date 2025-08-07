@@ -62,7 +62,7 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import type {
   RouteLocationAsPathGeneric,
@@ -70,36 +70,48 @@ import type {
 } from "vue-router";
 import { twMerge } from "tailwind-merge";
 
+export interface PageFeatureProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  /**
+   * The icon displayed next to the title when `orientation` is `horizontal` and above the title when `orientation` is `vertical`.
+   */
+  icon?: string;
+  title?: string;
+  description?: string;
+  /**
+   * The orientation of the page feature.
+   * @defaultValue 'horizontal'
+   */
+  orientation?: "horizontal" | "vertical";
+  to?: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
+  target?: null | "_blank" | "_parent" | "_self" | "_top" | (string & {});
+  onClick?: (event: MouseEvent) => void;
+  class?: unknown;
+  titleClass?: unknown;
+  descriptionClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    icon?: string;
-    title?: string;
-    description?: string;
-    orientation?: "horizontal" | "vertical";
-    to?: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
-    target?: null | "_blank" | "_parent" | "_self" | "_top" | (string & {});
-    onClick?: (event: MouseEvent) => void;
-    class?: unknown;
-    titleClass?: unknown;
-    descriptionClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    icon: undefined,
-    title: undefined,
-    description: undefined,
-    orientation: "horizontal",
-    to: undefined,
-    target: undefined,
-    onClick: undefined,
-    class: undefined,
-    titleClass: undefined,
-    descriptionClass: undefined,
-  },
-);
+const props = withDefaults(defineProps<PageFeatureProps>(), {
+  as: "div",
+  icon: undefined,
+  title: undefined,
+  description: undefined,
+  orientation: "horizontal",
+  to: undefined,
+  target: undefined,
+  onClick: undefined,
+  class: undefined,
+  titleClass: undefined,
+  descriptionClass: undefined,
+});
 
 const slots = defineSlots();
 

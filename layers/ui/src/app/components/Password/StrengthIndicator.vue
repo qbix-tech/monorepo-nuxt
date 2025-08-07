@@ -74,17 +74,53 @@ export interface PasswordStrengthRequirement {
 }
 
 export interface PasswordStrengthIndicatorProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
   as?: PrimitiveProps["as"];
+  /**
+   * The title of the password strength indicator.
+   */
   title?: string;
+  /**
+   * Whether to display a progress bar indicating the password strength.
+   * @defaultValue true
+   */
   progress?: boolean;
+  /**
+   * The size of the progress bar.
+   * @defaultValue 'sm'
+   */
   progressSize?: ProgressProps["size"];
+  /**
+   * An array of password strength requirements.
+   * Each requirement should have a regex to test against the password.
+   * If `text` is provided, it will be displayed instead of the i18n text.
+   * If `i18n` is provided, it should contain a key for localization
+   * and an optional count for pluralization.
+   * @defaultValue A set of common password strength requirements.
+   * - At least 12 characters
+   * - At least 1 number
+   * - At least 1 lowercase letter
+   * - At least 1 uppercase letter
+   * - At least 1 special character
+   */
   requirements?: PasswordStrengthRequirement[];
   class?: unknown;
   titleClass?: unknown;
   listClass?: unknown;
   listItemClass?: unknown;
   listItemTextClass?: unknown;
+  /**
+   * The icon displayed when a requirement is met.
+   * defaultValue 'lucide:circle-check'
+   */
   metIcon?: string;
+  /**
+   * The icon displayed when a requirement is not met.
+   * defaultValue 'lucide:circle-x'
+   */
   notMetIcon?: string;
   iconClass?: string;
 }

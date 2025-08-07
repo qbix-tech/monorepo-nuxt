@@ -137,47 +137,67 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import type { ButtonProps } from "@nuxt/ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    headline?: string;
-    title?: string;
-    description?: string;
-    links?: ButtonProps[];
-    orientation?: "horizontal" | "vertical";
-    reverse?: boolean;
-    class?: unknown;
-    containerClass?: unknown;
-    headlineClass?: unknown;
-    titleClass?: unknown;
-    descriptionClass?: unknown;
-    linksClass?: unknown;
-    bodyClass?: unknown;
-    footerClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    headline: undefined,
-    title: undefined,
-    description: undefined,
-    links: undefined,
-    orientation: "vertical",
-    reverse: false,
-    class: undefined,
-    containerClass: undefined,
-    headlineClass: undefined,
-    titleClass: undefined,
-    descriptionClass: undefined,
-    linksClass: undefined,
-    bodyClass: undefined,
-    footerClass: undefined,
-  },
-);
+export interface PageHeroProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  /**
+   * The headline displayed above the title.
+   */
+  headline?: string;
+  title?: string;
+  description?: string;
+  /**
+   * Display a list of Button under the description.
+   * `{ size: 'xl' }`{lang="ts-type"}
+   */
+  links?: ButtonProps[];
+  /**
+   * The orientation of the page hero.
+   * @defaultValue 'vertical'
+   */
+  orientation?: "horizontal" | "vertical";
+  /**
+   * Reverse the order of the default slot.
+   * @defaultValue false
+   */
+  reverse?: boolean;
+  class?: unknown;
+  containerClass?: unknown;
+  headlineClass?: unknown;
+  titleClass?: unknown;
+  descriptionClass?: unknown;
+  linksClass?: unknown;
+  bodyClass?: unknown;
+  footerClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<PageHeroProps>(), {
+  as: "div",
+  headline: undefined,
+  title: undefined,
+  description: undefined,
+  links: undefined,
+  orientation: "vertical",
+  reverse: false,
+  class: undefined,
+  containerClass: undefined,
+  headlineClass: undefined,
+  titleClass: undefined,
+  descriptionClass: undefined,
+  linksClass: undefined,
+  bodyClass: undefined,
+  footerClass: undefined,
+});
 
 const slots = defineSlots();
 

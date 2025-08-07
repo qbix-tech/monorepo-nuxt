@@ -188,7 +188,7 @@
   </Primitive>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import type {
   RouteLocationAsPathGeneric,
@@ -197,78 +197,109 @@ import type {
 import { twMerge } from "tailwind-merge";
 import { pausableFilter } from "@vueuse/core";
 
+export interface PageCardProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  /**
+   * The icon displayed above the title.
+   */
+  icon?: string;
+  title?: string;
+  description?: string;
+  /**
+   * The orientation of the page card.
+   * @defaultValue 'vertical'
+   */
+  orientation?: "horizontal" | "vertical";
+  /**
+   * Reverse the order of the default slot.
+   * @defaultValue false
+   */
+  reverse?: boolean;
+  /**
+   * Display a line around the page card.
+   */
+  highlight?: boolean;
+  /**
+   * @defaultValue 'primary'
+   */
+  highlightColor?:
+    | "error"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "info"
+    | "warning"
+    | "neutral";
+  /**
+   * Display a spotlight effect that follows your mouse cursor and highlights borders on hover.
+   */
+  spotlight?: boolean;
+  /**
+   * @defaultValue 'primary'
+   */
+  spotlightColor?:
+    | "error"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "info"
+    | "warning"
+    | "neutral";
+  /**
+   * @defaultValue 'outline'
+   */
+  variant?: "solid" | "outline" | "soft" | "subtle" | "ghost" | "naked";
+  to?: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
+  target?: null | "_blank" | "_parent" | "_self" | "_top" | (string & {});
+  onClick?: (event: MouseEvent) => void;
+  class?: unknown;
+  spotlightClass?: unknown;
+  containerClass?: unknown;
+  wrapperClass?: unknown;
+  headerClass?: unknown;
+  bodyClass?: unknown;
+  footerClass?: unknown;
+  leadingClass?: unknown;
+  leadingIconClass?: unknown;
+  titleClass?: unknown;
+  descriptionClass?: unknown;
+}
+</script>
+
+<script lang="ts" setup>
 defineOptions({ inheritAttrs: false });
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    icon?: string;
-    title?: string;
-    description?: string;
-    orientation?: "horizontal" | "vertical";
-    reverse?: boolean;
-    highlight?: boolean;
-    highlightColor?:
-      | "error"
-      | "primary"
-      | "secondary"
-      | "success"
-      | "info"
-      | "warning"
-      | "neutral";
-    spotlight?: boolean;
-    spotlightColor?:
-      | "error"
-      | "primary"
-      | "secondary"
-      | "success"
-      | "info"
-      | "warning"
-      | "neutral";
-    variant?: "solid" | "outline" | "soft" | "subtle" | "ghost" | "naked";
-    to?: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
-    target?: null | "_blank" | "_parent" | "_self" | "_top" | (string & {});
-    onClick?: (event: MouseEvent) => void;
-    class?: unknown;
-    spotlightClass?: unknown;
-    containerClass?: unknown;
-    wrapperClass?: unknown;
-    headerClass?: unknown;
-    bodyClass?: unknown;
-    footerClass?: unknown;
-    leadingClass?: unknown;
-    leadingIconClass?: unknown;
-    titleClass?: unknown;
-    descriptionClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    icon: undefined,
-    title: undefined,
-    description: undefined,
-    orientation: "vertical",
-    reverse: false,
-    highlight: false,
-    highlightColor: "primary",
-    spotlight: false,
-    spotlightColor: "primary",
-    variant: "outline",
-    to: undefined,
-    target: null,
-    onClick: undefined,
-    class: undefined,
-    spotlightClass: undefined,
-    containerClass: undefined,
-    wrapperClass: undefined,
-    headerClass: undefined,
-    bodyClass: undefined,
-    footerClass: undefined,
-    leadingClass: undefined,
-    leadingIconClass: undefined,
-    titleClass: undefined,
-    descriptionClass: undefined,
-  },
-);
+const props = withDefaults(defineProps<PageCardProps>(), {
+  as: "div",
+  icon: undefined,
+  title: undefined,
+  description: undefined,
+  orientation: "vertical",
+  reverse: false,
+  highlight: false,
+  highlightColor: "primary",
+  spotlight: false,
+  spotlightColor: "primary",
+  variant: "outline",
+  to: undefined,
+  target: null,
+  onClick: undefined,
+  class: undefined,
+  spotlightClass: undefined,
+  containerClass: undefined,
+  wrapperClass: undefined,
+  headerClass: undefined,
+  bodyClass: undefined,
+  footerClass: undefined,
+  leadingClass: undefined,
+  leadingIconClass: undefined,
+  titleClass: undefined,
+  descriptionClass: undefined,
+});
 
 const slots = defineSlots();
 

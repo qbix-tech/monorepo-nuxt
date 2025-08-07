@@ -205,60 +205,87 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import type { ButtonProps } from "@nuxt/ui";
 import type PageFeature from "./Feature.vue";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    headline?: string;
-    icon?: string;
-    title?: string;
-    description?: string;
-    links?: ButtonProps[];
-    features?: InstanceType<typeof PageFeature>["$props"][];
-    orientation?: "horizontal" | "vertical";
-    reverse?: boolean;
-    class?: unknown;
-    containerClass?: unknown;
-    headerClass?: unknown;
-    leadingClass?: unknown;
-    leadingIconClass?: unknown;
-    headlineClass?: unknown;
-    titleClass?: unknown;
-    descriptionClass?: unknown;
-    linksClass?: unknown;
-    featuresClass?: unknown;
-    bodyClass?: unknown;
-    footerClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    headline: undefined,
-    icon: undefined,
-    title: undefined,
-    description: undefined,
-    links: undefined,
-    features: undefined,
-    orientation: "vertical",
-    reverse: false,
-    class: undefined,
-    containerClass: undefined,
-    headerClass: undefined,
-    leadingClass: undefined,
-    leadingIconClass: undefined,
-    headlineClass: undefined,
-    titleClass: undefined,
-    descriptionClass: undefined,
-    linksClass: undefined,
-    featuresClass: undefined,
-    bodyClass: undefined,
-    footerClass: undefined,
-  },
-);
+export interface PageSectionProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'section'
+   */
+  as?: PrimitiveProps["as"];
+  /**
+   * The headline displayed above the title.
+   */
+  headline?: string;
+  /**
+   * The icon displayed above the title.
+   * @IconifyIcon
+   */
+  icon?: string;
+  title?: string;
+  description?: string;
+  /**
+   * Display a list of Button under the description.
+   * `{ size: 'lg' }`{lang="ts-type"}
+   */
+  links?: ButtonProps[];
+  /**
+   * Display a list of PageFeature under the description.
+   */
+  features?: InstanceType<typeof PageFeature>["$props"][];
+  /**
+   * The orientation of the section.
+   * @defaultValue 'vertical'
+   */
+  orientation?: "horizontal" | "vertical";
+  /**
+   * Reverse the order of the default slot.
+   * @defaultValue false
+   */
+  reverse?: boolean;
+  class?: unknown;
+  containerClass?: unknown;
+  headerClass?: unknown;
+  leadingClass?: unknown;
+  leadingIconClass?: unknown;
+  headlineClass?: unknown;
+  titleClass?: unknown;
+  descriptionClass?: unknown;
+  linksClass?: unknown;
+  featuresClass?: unknown;
+  bodyClass?: unknown;
+  footerClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<PageSectionProps>(), {
+  as: "div",
+  headline: undefined,
+  icon: undefined,
+  title: undefined,
+  description: undefined,
+  links: undefined,
+  features: undefined,
+  orientation: "vertical",
+  reverse: false,
+  class: undefined,
+  containerClass: undefined,
+  headerClass: undefined,
+  leadingClass: undefined,
+  leadingIconClass: undefined,
+  headlineClass: undefined,
+  titleClass: undefined,
+  descriptionClass: undefined,
+  linksClass: undefined,
+  featuresClass: undefined,
+  bodyClass: undefined,
+  footerClass: undefined,
+});
 
 const slots = defineSlots();
 

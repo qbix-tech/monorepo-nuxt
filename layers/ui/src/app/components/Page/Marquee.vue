@@ -43,32 +43,57 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    pauseOnHover?: boolean;
-    reverse?: boolean;
-    orientation?: "horizontal" | "vertical";
-    repeat?: number;
-    overlay?: boolean;
-    class?: unknown;
-    contentClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    pauseOnHover: false,
-    reverse: false,
-    orientation: "horizontal",
-    repeat: 4,
-    overlay: true,
-    class: undefined,
-    contentClass: undefined,
-  },
-);
+export interface PageMarqueeProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  /**
+   * Pause the marquee animation when hovered.
+   * @defaultValue false
+   */
+  pauseOnHover?: boolean;
+  /**
+   * Reverse the marquee animation direction.
+   * @defaultValue false
+   */
+  reverse?: boolean;
+  /**
+   * The orientation of the marquee.
+   * @defaultValue 'horizontal'
+   */
+  orientation?: "horizontal" | "vertical";
+  /**
+   * The number of times the group of items should be duplicated.
+   * @defaultValue 4
+   */
+  repeat?: number;
+  /**
+   * Display an overlay gradient on the marquee.
+   * @defaultValue true
+   */
+  overlay?: boolean;
+  class?: unknown;
+  contentClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<PageMarqueeProps>(), {
+  as: "div",
+  pauseOnHover: false,
+  reverse: false,
+  orientation: "horizontal",
+  repeat: 4,
+  overlay: true,
+  class: undefined,
+  contentClass: undefined,
+});
 
 const defaultClass =
   "group relative flex items-center overflow-hidden gap-(--gap) [--gap:--spacing(16)] [--duration:20s]";

@@ -1,3 +1,9 @@
+/**
+ * A composable to show a cookie consent toast when the user has not yet accepted cookies.
+ *
+ * @param key The key to use for the cookie. Defaults to "cookie-consent".
+ * @param acceptValue The value to set when the user accepts cookies. Defaults to "accepted".
+ */
 export const useCookieConsent = (
   key: string = "cookie-consent",
   acceptValue: string = "accepted",
@@ -41,4 +47,8 @@ export const useCookieConsent = (
   };
 };
 
+/**
+ * A shared composable for cookie consent that can be used across multiple components.
+ * This ensures the same state is shared across components that use this composable.
+ */
 export const useSharedCookieConsent = createSharedComposable(useCookieConsent);

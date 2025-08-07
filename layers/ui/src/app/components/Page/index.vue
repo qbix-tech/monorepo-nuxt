@@ -20,26 +20,31 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, Slot, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    class?: unknown;
-    leftClass?: unknown;
-    centerClass?: unknown;
-    rightClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    class: undefined,
-    leftClass: undefined,
-    centerClass: undefined,
-    rightClass: undefined,
-  },
-);
+export interface PageProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  class?: unknown;
+  leftClass?: unknown;
+  centerClass?: unknown;
+  rightClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<PageProps>(), {
+  as: "div",
+  class: undefined,
+  leftClass: undefined,
+  centerClass: undefined,
+  rightClass: undefined,
+});
 
 const defaultClass = "flex flex-col lg:grid lg:grid-cols-10 lg:gap-10";
 const defaultLeftClass = "lg:col-span-2";
