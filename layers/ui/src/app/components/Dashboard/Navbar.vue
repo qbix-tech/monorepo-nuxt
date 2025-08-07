@@ -52,43 +52,60 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import type { ButtonProps } from "@nuxt/ui";
 import { twMerge } from "tailwind-merge";
 
+export interface DashboardNavbarProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  /**
+   * The icon to display next to the title.
+   */
+  icon?: string;
+  title?: string;
+  /**
+   * Whether to show the toggle button for the sidebar.
+   * Can also be an object with button props.
+   * @defaultValue true
+   */
+  toggle?: boolean | Partial<ButtonProps>;
+  /**
+   * The side where the toggle button should be displayed.
+   * @defaultValue 'left'
+   */
+  toggleSide?: "left" | "right";
+  class?: unknown;
+  leftClass?: unknown;
+  rightClass?: unknown;
+  centerClass?: unknown;
+  iconClass?: unknown;
+  titleClass?: unknown;
+  toggleClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    icon?: string;
-    title?: string;
-    toggle?: boolean | Partial<ButtonProps>;
-    toggleSide?: "left" | "right";
-    class?: unknown;
-    leftClass?: unknown;
-    rightClass?: unknown;
-    centerClass?: unknown;
-    iconClass?: unknown;
-    titleClass?: unknown;
-    toggleClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    icon: undefined,
-    title: undefined,
-    toggle: true,
-    toggleSide: "left",
-    class: undefined,
-    leftClass: undefined,
-    rightClass: undefined,
-    centerClass: undefined,
-    iconClass: undefined,
-    titleClass: undefined,
-    toggleClass: undefined,
-  },
-);
+const props = withDefaults(defineProps<DashboardNavbarProps>(), {
+  as: "div",
+  icon: undefined,
+  title: undefined,
+  toggle: true,
+  toggleSide: "left",
+  class: undefined,
+  leftClass: undefined,
+  rightClass: undefined,
+  centerClass: undefined,
+  iconClass: undefined,
+  titleClass: undefined,
+  toggleClass: undefined,
+});
 
 const defaultClass =
   "h-[--spacing(16)] shrink-0 flex items-center justify-between border-b border-default px-4 sm:px-6 gap-1.5";

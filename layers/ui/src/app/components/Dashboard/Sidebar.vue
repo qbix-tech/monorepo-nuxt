@@ -122,7 +122,7 @@
   </Menu>
 </template>
 
-<script setup lang="ts" generic="T extends 'slideover' | 'modal' | 'drawer'">
+<script lang="ts">
 import { defu } from "defu";
 import type {
   SlideoverProps,
@@ -141,60 +141,111 @@ type DashboardSidebarMenu<T> = T extends "modal"
       ? DrawerProps
       : never;
 
+export interface DashboardSidebarProps<
+  T extends "slideover" | "modal" | "drawer",
+> {
+  title?: string;
+  description?: string;
+  /**
+   * The mode of the sidebar menu.
+   * @defaultValue 'modal'
+   */
+  mode?: T;
+  /**
+   * The props for the sidebar menu component.
+   */
+  menu?: DashboardSidebarMenu<T>;
+  /**
+   * Customize the toggle button to open the sidebar.
+   * `{ color: 'neutral', variant: 'ghost' }`{lang="ts-type"}
+   * @defaultValue true
+   */
+  toggle?: boolean | Partial<ButtonProps>;
+  /**
+   * The side to render the toggle button on.
+   * @defaultValue 'left'
+   */
+  toggleSide?: "left" | "right";
+  /**
+   * Whether to allow the user to collapse the panel.
+   * @defaultValue false
+   */
+  collapsible?: boolean;
+  /**
+   * The id of the panel.
+   * @defaultValue useId()
+   */
+  id?: string;
+  /**
+   * The side to render the panel on.
+   * @defaultValue 'left'
+   */
+  side?: "left" | "right";
+  /**
+   * The minimum size of the panel.
+   * @defaultValue 10
+   */
+  minSize?: number;
+  /**
+   * The maximum size of the panel.
+   * @defaultValue 20
+   */
+  maxSize?: number;
+  /**
+   * The default size of the panel.
+   * @defaultValue 15
+   */
+  defaultSize?: number;
+  /**
+   * Whether to allow the user to resize the panel.
+   * @defaultValue false
+   */
+  resizable?: boolean;
+  /**
+   * The size of the panel when collapsed.
+   * @defaultValue 0
+   */
+  collapsedSize?: number;
+  class?: unknown;
+  headerClass?: unknown;
+  bodyClass?: unknown;
+  footerClass?: unknown;
+  contentClass?: unknown;
+  overlayClass?: unknown;
+  toggleClass?: unknown;
+  handleClass?: unknown;
+}
+</script>
+
+<script setup lang="ts" generic="T extends 'slideover' | 'modal' | 'drawer'">
 defineOptions({ inheritAttrs: false });
 
 const route = useRoute();
 
-const props = withDefaults(
-  defineProps<{
-    title?: string;
-    description?: string;
-    mode?: T;
-    menu?: DashboardSidebarMenu<T>;
-    toggle?: boolean | Partial<ButtonProps>;
-    toggleSide?: "left" | "right";
-    collapsible?: boolean;
-    id?: string;
-    side?: "left" | "right";
-    minSize?: number;
-    maxSize?: number;
-    defaultSize?: number;
-    resizable?: boolean;
-    collapsedSize?: number;
-    class?: unknown;
-    headerClass?: unknown;
-    bodyClass?: unknown;
-    footerClass?: unknown;
-    contentClass?: unknown;
-    overlayClass?: unknown;
-    toggleClass?: unknown;
-    handleClass?: unknown;
-  }>(),
-  {
-    title: undefined,
-    description: undefined,
-    mode: "slideover",
-    menu: undefined,
-    toggle: true,
-    toggleSide: "left",
-    collapsible: false,
-    id: useId(),
-    side: "left",
-    minSize: 10,
-    maxSize: 20,
-    defaultSize: 15,
-    resizable: false,
-    collapsedSize: 0,
-    class: undefined,
-    headerClass: undefined,
-    bodyClass: undefined,
-    footerClass: undefined,
-    contentClass: undefined,
-    overlayClass: undefined,
-    toggleClass: undefined,
-    handleClass: undefined,
-  },
-);
+const props = withDefaults(defineProps<DashboardSidebarProps<T>>(), {
+  title: undefined,
+  description: undefined,
+  mode: "modal",
+  menu: undefined,
+  toggle: true,
+  toggleSide: "left",
+  collapsible: false,
+  id: useId(),
+  side: "left",
+  minSize: 10,
+  maxSize: 20,
+  defaultSize: 15,
+  resizable: false,
+  collapsedSize: 0,
+  class: undefined,
+  headerClass: undefined,
+  bodyClass: undefined,
+  footerClass: undefined,
+  contentClass: undefined,
+  overlayClass: undefined,
+  toggleClass: undefined,
+  handleClass: undefined,
+});
 
 const defaultClass =
   "relative hidden lg:flex flex-col min-h-dvh min-w-16 w-(--width) shrink-0";
@@ -266,7 +317,7 @@ const Menu = computed<DashboardSidebarMenu<T>>(
       slideover: USlideover,
       modal: UModal,
       drawer: UDrawer,
-    })[props.mode],
+    })[props.mode] as DashboardSidebarMenu<T>,
 );
 const menuProps = toRef(() =>
   defu(

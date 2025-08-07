@@ -19,13 +19,11 @@
   </UModal>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import type { ModalProps } from "@nuxt/ui";
 import { twMerge } from "tailwind-merge";
 
-defineOptions({ inheritAttrs: false });
-
-const props = defineProps<{
+export interface ImageLightboxProps {
   /**
    * The image source URL.
    */
@@ -35,7 +33,13 @@ const props = defineProps<{
    */
   alt?: string;
   ui?: ModalProps["ui"];
-}>();
+}
+</script>
+
+<script setup lang="ts">
+defineOptions({ inheritAttrs: false });
+
+const props = defineProps<ImageLightboxProps>();
 
 const open = defineModel<boolean>({
   default: false,

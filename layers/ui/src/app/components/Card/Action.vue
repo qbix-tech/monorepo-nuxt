@@ -152,40 +152,53 @@ type ContentTransition<T> = T extends "fade"
   : T extends "slide"
     ? typeof TransitionSlide
     : never;
+
+export interface CardActionProps<T extends "fade" | "slide"> {
+  title?: string;
+  description?: string;
+  /** The current step of the modal, used to display contents. Content can be slotted with slot `#<step>-body` and `#<step>-footer`. */
+  currentStep?: number;
+  loading?: boolean;
+  /**
+   * Whether close button should be displayed or customize the close button.
+   * `{ color: 'neutral', variant: 'ghost' }`{lang="ts-type"}
+   * @defaultValue true
+   */
+  close?: boolean | Partial<ButtonProps>;
+  /** Icon used to display the close button */
+  closeIcon?: string;
+  /**
+   * Animate the content when changing steps. Values can be `fade` or `slide`.
+   * @defaultValue false
+   */
+  transitionMode?: false | T;
+  /**
+   * Customize the transition properties.
+   */
+  transition?: ContentTransitionProps<T>;
+  headerClass?: unknown;
+  titleClass?: unknown;
+  descriptionClass?: unknown;
+}
 </script>
 
 <script setup lang="ts" generic="T extends 'fade' | 'slide'">
 const { t } = useI18n();
 const appConfig = useAppConfig();
 
-const props = withDefaults(
-  defineProps<{
-    title?: string;
-    description?: string;
-    currentStep?: number;
-    loading?: boolean;
-    close?: boolean | Partial<ButtonProps>;
-    closeIcon?: string;
-    transitionMode?: false | T;
-    transition?: ContentTransitionProps<T>;
-    headerClass?: unknown;
-    titleClass?: unknown;
-    descriptionClass?: unknown;
-  }>(),
-  {
-    title: undefined,
-    description: undefined,
-    currentStep: undefined,
-    loading: false,
-    close: true,
-    closeIcon: undefined,
-    transitionMode: false,
-    transition: undefined,
-    headerClass: undefined,
-    titleClass: undefined,
-    descriptionClass: undefined,
-  },
-);
+const props = withDefaults(defineProps<CardActionProps<T>>(), {
+  title: undefined,
+  description: undefined,
+  currentStep: undefined,
+  loading: false,
+  close: true,
+  closeIcon: undefined,
+  transitionMode: false,
+  transition: undefined,
+  headerClass: undefined,
+  titleClass: undefined,
+  descriptionClass: undefined,
+});
 
 const defaultHeaderClass = "flex justify-between gap-1.5 min-h-12";
 const defaultTitleClass = "text-highlighted font-semibold";

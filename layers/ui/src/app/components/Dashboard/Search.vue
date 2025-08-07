@@ -29,7 +29,7 @@
   </UModal>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { useForwardProps } from "reka-ui";
 import type { UseFuseOptions } from "@vueuse/integrations";
 import { defu } from "defu";
@@ -42,53 +42,103 @@ import type {
   CommandPaletteProps,
 } from "@nuxt/ui";
 
+export interface DashboardSearchProps {
+  title?: string;
+  description?: string;
+  /**
+   * The icon to display in the input.
+   * @defaulValue appConfig.ui.icons.search
+   */
+  icon?: string;
+  /**
+   * The placeholder text when the input is empty.
+   * @defaultValue t('ui.dashboard.search.placeholder')
+   */
+  placeholder?: string;
+  /**
+   * Automatically focus the input when component is mounted.
+   * @defaultValue true
+   */
+  autofocus?: boolean;
+  /**
+   * When `true`, the loading icon will be displayed.
+   */
+  loading?: boolean;
+  /**
+   * The icon when the `loading` prop is `true`.
+   * @defaultValue appConfig.ui.icons.loading
+   */
+  loadingIcon?: string;
+  /**
+   * Display a close button in the input (useful when inside a Modal for example).
+   * `{ size: 'md', color: 'neutral', variant: 'ghost' }`{lang="ts-type"}
+   * @defaultValue true
+   */
+  close?: boolean | Partial<ButtonProps>;
+  /**
+   * The icon displayed in the close button.
+   * @defaultValue appConfig.ui.icons.close
+   */
+  closeIcon?: string;
+  /**
+   * Keyboard shortcut to open the search (used by [`defineShortcuts`](https://ui.nuxt.com/composables/define-shortcuts))
+   * @defaultValue 'meta_k'
+   */
+  shortcut?: string;
+  groups?: CommandPaletteGroup<CommandPaletteItem>[];
+  /**
+   * Options for [useFuse](https://vueuse.org/integrations/useFuse) passed to the [CommandPalette](https://ui.nuxt.com/components/command-palette).
+   * @defaultValue {}
+   */
+  fuse?: UseFuseOptions<CommandPaletteItem>;
+  /**
+   * When `true`, the theme command will be added to the groups.
+   * @defaultValue true
+   */
+  colorMode?: boolean;
+  /**
+   * @defaultValue "lucide:monitor"
+   */
+  systemIcon?: string;
+  /**
+   * @defaultValue "lucide:sun"
+   */
+  lightIcon?: string;
+  /**
+   * @defaultValue "lucide:moon"
+   */
+  darkIcon?: string;
+  modalClass?: unknown;
+  inputClass?: unknown;
+  ui?: CommandPaletteProps["ui"];
+}
+</script>
+
+<script setup lang="ts">
 const { t } = useI18n();
 const _colorMode = useColorMode();
 
-const props = withDefaults(
-  defineProps<{
-    title?: string;
-    description?: string;
-    icon?: string;
-    placeholder?: string;
-    autofocus?: boolean;
-    loading?: boolean;
-    loadingIcon?: string;
-    close?: boolean | Partial<ButtonProps>;
-    closeIcon?: string;
-    shortcut?: string;
-    groups?: CommandPaletteGroup<CommandPaletteItem>[];
-    fuse?: UseFuseOptions<CommandPaletteItem>;
-    colorMode?: boolean;
-    systemIcon?: string;
-    darkIcon?: string;
-    lightIcon?: string;
-    modalClass?: unknown;
-    inputClass?: unknown;
-    ui?: CommandPaletteProps["ui"];
-  }>(),
-  {
-    title: undefined,
-    description: undefined,
-    icon: undefined,
-    placeholder: undefined,
-    autofocus: true,
-    loading: undefined,
-    loadingIcon: undefined,
-    close: true,
-    closeIcon: undefined,
-    shortcut: "meta_k",
-    groups: undefined,
-    fuse: undefined,
-    colorMode: true,
-    systemIcon: "lucide:monitor",
-    lightIcon: "lucide:sun",
-    darkIcon: "lucide:moon",
-    modalClass: undefined,
-    inputClass: undefined,
-    ui: undefined,
-  },
-);
+const props = withDefaults(defineProps<DashboardSearchProps>(), {
+  title: undefined,
+  description: undefined,
+  icon: undefined,
+  placeholder: undefined,
+  autofocus: true,
+  loading: undefined,
+  loadingIcon: undefined,
+  close: true,
+  closeIcon: undefined,
+  shortcut: "meta_k",
+  groups: undefined,
+  fuse: undefined,
+  colorMode: true,
+  systemIcon: "lucide:monitor",
+  lightIcon: "lucide:sun",
+  darkIcon: "lucide:moon",
+  modalClass: undefined,
+  inputClass: undefined,
+  ui: undefined,
+});
 
 const defaultModalClass = "sm:max-w-3xl sm:h-[28rem]";
 const defaultInputClass = "[&>input]:text-base/5";
@@ -115,7 +165,7 @@ const commandPaletteProps = useForwardProps(
 );
 const proxySlots = objectOmit(slots, ["content"]);
 const fuse = computed(() =>
-  defu({}, props.fuse, {
+  defu({}, props.fuse ?? {}, {
     fuseOptions: {},
   }),
 );

@@ -12,24 +12,29 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    class?: unknown;
-    leftClass?: unknown;
-    rightClass?: unknown;
-  }>(),
-  {
-    as: "div",
-    class: undefined,
-    leftClass: undefined,
-    rightClass: undefined,
-  },
-);
+export interface DashboardToolbarProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  class?: unknown;
+  leftClass?: unknown;
+  rightClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<DashboardToolbarProps>(), {
+  as: "div",
+  class: undefined,
+  leftClass: undefined,
+  rightClass: undefined,
+});
 
 const defaultClass =
   "shrink-0 flex items-center justify-between border-b border-default px-4 sm:px-6 gap-1.5 overflow-x-auto min-h-[49px]";

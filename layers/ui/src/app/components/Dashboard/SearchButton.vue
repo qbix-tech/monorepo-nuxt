@@ -52,45 +52,75 @@
   <ReuseButtonTemplate v-else />
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import type { ButtonProps, TooltipProps, KbdProps } from "@nuxt/ui";
 import { useForwardProps } from "reka-ui";
 import { defu } from "defu";
 import { twMerge } from "tailwind-merge";
 
+export interface DashboardSearchButtonProps {
+  /**
+   * The icon displayed in the button.
+   * @defaultValue appConfig.ui.icons.search
+   */
+  icon?: string;
+  /**
+   * The label displayed in the button.
+   * @defaultValue t('ui.dashboard.search.label.button')
+   */
+  label?: string;
+  /**
+   * The color of the button.
+   * @defaultValue 'neutral'
+   */
+  color?: ButtonProps["color"];
+  /**
+   * The variant of the button.
+   * Defaults to 'outline' when not collapsed, 'ghost' when collapsed.
+   */
+  variant?: ButtonProps["variant"];
+  size?: ButtonProps["size"];
+  /**
+   * Whether the button is collapsed.
+   * @defaultValue false
+   */
+  collapsed?: boolean;
+  /**
+   * Display a tooltip on the button when is collapsed with the button label.
+   * This has priority over the global `tooltip` prop.
+   */
+  tooltip?: boolean | TooltipProps;
+  /**
+   * The keyboard keys to display in the button.
+   * `{ variant: 'subtle' }`{lang="ts-type"}
+   * @defaultValue ['meta', 'k']
+   */
+  kbds?: (string | undefined)[] | KbdProps[];
+  class?: unknown;
+  trailingClass?: unknown;
+  ui?: ButtonProps["ui"];
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
 const appConfig = useAppConfig();
 const { t } = useI18n();
 
-const props = withDefaults(
-  defineProps<{
-    icon?: string;
-    label?: string;
-    color?: ButtonProps["color"];
-    variant?: ButtonProps["variant"];
-    size?: ButtonProps["size"];
-    collapsed?: boolean;
-    tooltip?: boolean | TooltipProps;
-    kbds?: (string | undefined)[] | KbdProps[];
-    class?: unknown;
-    trailingClass?: unknown;
-    ui?: ButtonProps["ui"];
-  }>(),
-  {
-    icon: undefined,
-    label: undefined,
-    color: "neutral",
-    variant: undefined,
-    size: undefined,
-    collapse: false,
-    tooltip: false,
-    kbds: () => ["meta", "k"],
-    class: undefined,
-    trailingClass: undefined,
-    ui: undefined,
-  },
-);
+const props = withDefaults(defineProps<DashboardSearchButtonProps>(), {
+  icon: undefined,
+  label: undefined,
+  color: "neutral",
+  variant: undefined,
+  size: undefined,
+  collapse: false,
+  tooltip: false,
+  kbds: () => ["meta", "k"],
+  class: undefined,
+  trailingClass: undefined,
+  ui: undefined,
+});
 
 const defaultClass = "";
 const defaultTrailingClass = "hidden lg:flex items-center gap-0.5 ms-auto";

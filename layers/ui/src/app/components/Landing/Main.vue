@@ -4,20 +4,25 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    class?: unknown;
-  }>(),
-  {
-    as: "main",
-    class: undefined,
-  },
-);
+export interface LandingMainProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'main'
+   */
+  as?: PrimitiveProps["as"];
+  class?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<LandingMainProps>(), {
+  as: "main",
+  class: undefined,
+});
 
 const defaultClass = "flex-grow";
 </script>

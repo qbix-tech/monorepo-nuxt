@@ -10,22 +10,22 @@ import type { TransitionProps } from "vue";
 export interface TransitionFadeProps {
   /**
    * Transition mode.
-   * @defaultvalue "out-in"
+   * @defaultValue "out-in"
    */
   mode?: TransitionProps["mode"];
   /**
    * Duration of the transition in seconds.
-   * @defaultvalue 0.2
+   * @defaultValue 0.2
    */
   durationInSeconds?: number;
   /**
    * Unit for the initial distance of the fade transition.
-   * @defaultvalue "rem"
+   * @defaultValue "rem"
    */
   distanceUnit?: "rem" | "px";
   /**
    * Initial distance of the fade transition. Positive values slide in from the bottom.
-   * @defaultvalue 0.1
+   * @defaultValue 0.1
    */
   distance?: number;
 }

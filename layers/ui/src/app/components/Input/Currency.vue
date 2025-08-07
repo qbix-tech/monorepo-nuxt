@@ -21,7 +21,7 @@ import { twMerge } from "tailwind-merge";
 export interface CurrencyInputProps extends /* @vue-ignore */ InputProps {
   /**
    * The thousands separator to use in the input.
-   * @defaultvalue ","
+   * @defaultValue ","
    */
   separator?: string;
 }

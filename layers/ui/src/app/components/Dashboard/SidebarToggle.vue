@@ -12,34 +12,48 @@
   />
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import type { ButtonProps } from "@nuxt/ui";
 import { useForwardProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
 
+export interface DashboardSidebarToggleProps {
+  /**
+   * The element or component this component should render as when not a link.
+   * @defaultValue 'button'
+   */
+  as?: ButtonProps["as"];
+  side?: "left" | "right";
+  /**
+   * @defaultValue 'neutral'
+   */
+  color?: ButtonProps["color"];
+  /**
+   * @defaultValue 'ghost'
+   */
+  variant?: ButtonProps["variant"];
+  /**
+   * @defaultValue 'md'
+   */
+  size?: ButtonProps["size"];
+  menuIcon?: string;
+  class?: unknown;
+}
+</script>
+
+<script setup lang="ts">
 const { t } = useI18n();
 const appConfig = useAppConfig();
 
-const props = withDefaults(
-  defineProps<{
-    as?: ButtonProps["as"];
-    side?: "left" | "right";
-    color?: ButtonProps["color"];
-    variant?: ButtonProps["variant"];
-    size?: ButtonProps["size"];
-    menuIcon?: string;
-    class?: unknown;
-  }>(),
-  {
-    as: "button",
-    side: "left",
-    color: "neutral",
-    variant: "ghost",
-    size: "md",
-    menuIcon: "lucide:menu",
-    class: undefined,
-  },
-);
+const props = withDefaults(defineProps<DashboardSidebarToggleProps>(), {
+  as: "button",
+  side: "left",
+  color: "neutral",
+  variant: "ghost",
+  size: "md",
+  menuIcon: "lucide:menu",
+  class: undefined,
+});
 const rootProps = useForwardProps(
   reactivePick(props, "as", "color", "variant", "size"),
 );

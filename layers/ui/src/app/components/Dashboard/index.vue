@@ -4,28 +4,50 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    storage?: "cookie" | "local";
-    storageKey?: string;
-    persistent?: boolean;
-    unit?: "%" | "px" | "rem";
-    class?: unknown;
-  }>(),
-  {
-    as: "dive",
-    storage: "cookie",
-    storageKey: "dashboard",
-    persistent: true,
-    unit: "%",
-    class: undefined,
-  },
-);
+export interface DashboardProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'div'
+   */
+  as?: PrimitiveProps["as"];
+  /**
+   * The storage type to use for persisting the dashboard state. `cookie` is preferred for SSR compatibility, while `local` is used for client-side only.
+   * @defaultValue 'cookie'
+   */
+  storage?: "cookie" | "local";
+  /**
+   * Unique id used to store the dashboard state in the storage.
+   * @defaultValue 'dashboard'
+   */
+  storageKey?: string;
+  /**
+   * Whether to persist the dashboard state across sessions.
+   * If `false`, the dashboard state will reset on page reload.
+   * @defaultValue true
+   */
+  persistent?: boolean;
+  /**
+   * The unit to use for size values.
+   * @defaultValue '%'
+   */
+  unit?: "%" | "px" | "rem";
+  class?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<DashboardProps>(), {
+  as: "div",
+  storage: "cookie",
+  storageKey: "dashboard",
+  persistent: true,
+  unit: "%",
+  class: undefined,
+});
 
 const defaultClass = "fixed inset-0 flex overflow-hidden";
 

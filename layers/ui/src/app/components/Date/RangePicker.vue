@@ -76,20 +76,64 @@
   </UPopover>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import type { ButtonProps, CalendarProps } from "@nuxt/ui";
 import { sub, format, isSameDay, type Duration } from "date-fns";
 import { enGB, ms, zhCN } from "date-fns/locale";
 import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { twMerge } from "tailwind-merge";
 
-defineOptions({ inheritAttrs: false });
-
 type DateRange = {
   label: string;
   duration?: Duration;
   custom?: { start: (date: Date) => Date; end: (date: Date) => Date };
 };
+
+export interface DateRangePickerProps {
+  /**
+   * @defaultValue 'neutral'
+   */
+  color?: ButtonProps["color"];
+  /**
+   * @defaultValue 'ghost'
+   */
+  variant?: ButtonProps["variant"];
+  /**
+   * The icon to display in the leading slot in the button.
+   * @defaultValue 'lucide:calendar'
+   */
+  icon?: string;
+  /**
+   * The icon to display in the trailing slot in the button.
+   * @defaultValue 'lucide:chevron-down'
+   */
+  trailingIcon?: string;
+  class?: unknown;
+  /**
+   * The format to display the start date in the button.
+   * @param locale The locale to use for formatting the date.
+   * @defaultValue 'd MMM, yyy' for en, 'do MMM, yyy' for zh
+   */
+  formatStartDate?: (locale: string) => string;
+  /**
+   * The format to display the end date in the button.
+   * @defaultValue 'd MMM, yyy' for en, 'do MMM, yyy' for zh
+   * @param locale The locale to use for formatting the date.
+   */
+  formatEndDate?: (locale: string) => string;
+  /**
+   * Customise the ranges available for selection.
+   */
+  ranges?: DateRange[];
+  /**
+   * Customise the calendar component.
+   */
+  calendar?: CalendarProps<true, false>;
+}
+</script>
+
+<script setup lang="ts">
+defineOptions({ inheritAttrs: false });
 
 const { locale, t } = useI18n();
 const dateLocale = computed(() => {
@@ -102,44 +146,31 @@ const dateLocale = computed(() => {
         : enGB;
 });
 
-const props = withDefaults(
-  defineProps<{
-    color?: ButtonProps["color"];
-    variant?: ButtonProps["variant"];
-    icon?: string;
-    trailingIcon?: string;
-    class?: unknown;
-    formatStartDate?: (locale: string) => string;
-    formatEndDate?: (locale: string) => string;
-    ranges?: DateRange[];
-    calendar?: CalendarProps<true, false>;
-  }>(),
-  {
-    color: "neutral",
-    variant: "ghost",
-    icon: "lucide:calendar",
-    trailingIcon: "lucide:chevron-down",
-    class: undefined,
-    formatStartDate: (locale: string) =>
-      locale === "zh" ? "do MMM, yyy" : "d MMM, yyy",
-    formatEndDate: (locale: string) =>
-      locale === "zh" ? "do MMM, yyy" : "d MMM, yyy",
-    ranges: () => [
-      { label: "Last 7 days", duration: { days: 7 } },
-      { label: "Last 14 days", duration: { days: 14 } },
-      { label: "Last 30 days", duration: { days: 30 } },
-      { label: "Last month", duration: { months: 1 } },
-      { label: "Last 3 months", duration: { months: 3 } },
-      { label: "Last 6 months", duration: { months: 6 } },
-      { label: "Last year", duration: { years: 1 } },
-    ],
-    calendar: () => ({
-      numberOfMonths: 2,
-      class: "p-2",
-      range: true,
-    }),
-  },
-);
+const props = withDefaults(defineProps<DateRangePickerProps>(), {
+  color: "neutral",
+  variant: "ghost",
+  icon: "lucide:calendar",
+  trailingIcon: "lucide:chevron-down",
+  class: undefined,
+  formatStartDate: (locale: string) =>
+    locale === "zh" ? "do MMM, yyy" : "d MMM, yyy",
+  formatEndDate: (locale: string) =>
+    locale === "zh" ? "do MMM, yyy" : "d MMM, yyy",
+  ranges: () => [
+    { label: "Last 7 days", duration: { days: 7 } },
+    { label: "Last 14 days", duration: { days: 14 } },
+    { label: "Last 30 days", duration: { days: 30 } },
+    { label: "Last month", duration: { months: 1 } },
+    { label: "Last 3 months", duration: { months: 3 } },
+    { label: "Last 6 months", duration: { months: 6 } },
+    { label: "Last year", duration: { years: 1 } },
+  ],
+  calendar: () => ({
+    numberOfMonths: 2,
+    class: "p-2",
+    range: true,
+  }),
+});
 
 const defaultClass = "data-[state=open]:bg-elevated group";
 

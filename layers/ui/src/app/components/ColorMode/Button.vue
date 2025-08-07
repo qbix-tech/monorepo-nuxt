@@ -29,28 +29,41 @@
   </ClientOnly>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import type { ButtonProps } from "@nuxt/ui";
 import { twMerge } from "tailwind-merge";
 
+export interface ColorModeButtonProps {
+  /**
+   * @defaultValue 'neutral'
+   */
+  color?: ButtonProps["color"];
+  /**
+   * @defaultValue 'ghost'
+   */
+  variant?: ButtonProps["variant"];
+  /**
+   * @defaultValue 'lucide:sun'
+   */
+  lightIcon?: ButtonProps["icon"];
+  /**
+   * @defaultValue 'lucide:moon'
+   */
+  darkIcon?: ButtonProps["icon"];
+  class?: unknown;
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
-const props = withDefaults(
-  defineProps<{
-    color?: ButtonProps["color"];
-    variant?: ButtonProps["variant"];
-    lightIcon?: ButtonProps["icon"];
-    darkIcon?: ButtonProps["icon"];
-    class?: unknown;
-  }>(),
-  {
-    color: "neutral",
-    variant: "ghost",
-    lightIcon: "lucide:sun",
-    darkIcon: "lucide:moon",
-    class: undefined,
-  },
-);
+const props = withDefaults(defineProps<ColorModeButtonProps>(), {
+  color: "neutral",
+  variant: "ghost",
+  lightIcon: "lucide:sun",
+  darkIcon: "lucide:moon",
+  class: undefined,
+});
 
 const defaultClass = "cursor-pointer";
 

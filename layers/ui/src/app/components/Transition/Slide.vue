@@ -10,22 +10,22 @@ import type { TransitionProps } from "vue";
 export interface TransitionSlideProps {
   /**
    * Transition mode.
-   * @defaultvalue "out-in"
+   * @defaultValue "out-in"
    */
   mode?: TransitionProps["mode"];
   /**
    * Duration of the transition in seconds.
-   * @defaultvalue 0.2
+   * @defaultValue 0.2
    */
   durationInSeconds?: number;
   /**
    * Unit for the initial distance of the slide transition.
-   * @defaultvalue "rem"
+   * @defaultValue "rem"
    */
   distanceUnit?: "rem" | "px";
   /**
    * Initial distance of the slide transition. Negative values slide in from the left.
-   * @defaultvalue -0.2
+   * @defaultValue -0.2
    */
   distance?: number;
 }

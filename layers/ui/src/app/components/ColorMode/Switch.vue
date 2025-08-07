@@ -28,21 +28,28 @@
   </ClientOnly>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import type { SwitchProps } from "@nuxt/ui";
 
+export interface ColorModeSwitchProps {
+  /**
+   * @defaultValue "lucide:sun"
+   */
+  lightIcon?: SwitchProps["checkedIcon"];
+  /**
+   * @defaultValue "lucide:moon"
+   */
+  darkIcon?: SwitchProps["checkedIcon"];
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
-withDefaults(
-  defineProps<{
-    lightIcon?: SwitchProps["checkedIcon"];
-    darkIcon?: SwitchProps["checkedIcon"];
-  }>(),
-  {
-    lightIcon: "lucide:sun",
-    darkIcon: "lucide:moon",
-  },
-);
+withDefaults(defineProps<ColorModeSwitchProps>(), {
+  lightIcon: "lucide:sun",
+  darkIcon: "lucide:moon",
+});
 
 const { t } = useI18n();
 const colorMode = useColorMode();

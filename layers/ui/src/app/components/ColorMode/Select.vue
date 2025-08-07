@@ -21,21 +21,31 @@
   </ClientOnly>
 </template>
 
+<script lang="ts">
+export interface ColorModeSelectProps {
+  /**
+   * @defaultValue "lucide:monitor"
+   */
+  systemIcon?: string;
+  /**
+   * @defaultValue "lucide:sun"
+   */
+  lightIcon?: string;
+  /**
+   * @defaultValue "lucide:moon"
+   */
+  darkIcon?: string;
+}
+</script>
+
 <script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
-const props = withDefaults(
-  defineProps<{
-    systemIcon?: string;
-    lightIcon?: string;
-    darkIcon?: string;
-  }>(),
-  {
-    systemIcon: "lucide:monitor",
-    lightIcon: "lucide:sun",
-    darkIcon: "lucide:moon",
-  },
-);
+const props = withDefaults(defineProps<ColorModeSelectProps>(), {
+  systemIcon: "lucide:monitor",
+  lightIcon: "lucide:sun",
+  darkIcon: "lucide:moon",
+});
 
 const { t } = useI18n();
 const colorMode = useColorMode();

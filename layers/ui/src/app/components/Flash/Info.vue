@@ -13,10 +13,10 @@
   </span>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { twMerge } from "tailwind-merge";
 
-const props = defineProps<{
+export interface FlashInfoProps {
   /**
    * Whether to show a pulsing effect around the icon.
    * @default false
@@ -25,8 +25,12 @@ const props = defineProps<{
   class?: unknown;
   /**
    * The icon to display.
-   * @defaultvalue 'lucide:circle-x'
+   * @defaultValue 'lucide:info'
    */
   icon?: string;
-}>();
+}
+</script>
+
+<script setup lang="ts">
+const props = defineProps<FlashInfoProps>();
 </script>

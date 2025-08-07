@@ -39,7 +39,7 @@
   </UPopover>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import type { ButtonProps, CalendarProps } from "@nuxt/ui";
 import { format } from "date-fns";
 import { enGB, ms, zhCN } from "date-fns/locale";
@@ -47,6 +47,45 @@ import { getLocalTimeZone, CalendarDate } from "@internationalized/date";
 import { twMerge } from "tailwind-merge";
 import { getEndOfDay } from "#workspace/packages/utils/src/helpers/date";
 
+export interface DatePickerProps {
+  /**
+   * @defaultValue 'neutral'
+   */
+  color?: ButtonProps["color"];
+  /**
+   * @defaultValue 'ghost'
+   */
+  variant?: ButtonProps["variant"];
+  /**
+   * The icon to display in the leading slot in the button.
+   * @defaultValue 'lucide:calendar'
+   */
+  icon?: string;
+  /**
+   * The icon to display in the trailing slot in the button.
+   * @defaultValue 'lucide:chevron-down'
+   */
+  trailingIcon?: string;
+  class?: unknown;
+  /**
+   * The format to use for the date.
+   * @param locale The locale to use for formatting the
+   * @defaultValue 'd MMM, yyy' for en locale, 'do MMM, yyy' for zh locale
+   */
+  formatDate?: (locale: string) => string;
+  /**
+   * Whether to set the date to the end of the day in user's timezone.
+   * @defaultValue false
+   */
+  endOfDay?: boolean;
+  /**
+   * Customise the calendar component.
+   */
+  calendar?: CalendarProps<false, false>;
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ inheritAttrs: false });
 
 const { locale, t } = useI18n();
@@ -60,32 +99,20 @@ const dateLocale = computed(() => {
         : enGB;
 });
 
-const props = withDefaults(
-  defineProps<{
-    color?: ButtonProps["color"];
-    variant?: ButtonProps["variant"];
-    icon?: string;
-    trailingIcon?: string;
-    class?: unknown;
-    formatDate?: (locale: string) => string;
-    endOfDay?: boolean;
-    calendar?: CalendarProps<false, false>;
-  }>(),
-  {
-    color: "neutral",
-    variant: "ghost",
-    icon: "lucide:calendar",
-    trailingIcon: "lucide:chevron-down",
-    class: undefined,
-    formatDate: (locale: string) =>
-      locale === "zh" ? "do MMM, yyy" : "d MMM, yyy",
-    endOfDay: false,
-    calendar: () => ({
-      numberOfMonths: 2,
-      class: "p-2",
-    }),
-  },
-);
+const props = withDefaults(defineProps<DatePickerProps>(), {
+  color: "neutral",
+  variant: "ghost",
+  icon: "lucide:calendar",
+  trailingIcon: "lucide:chevron-down",
+  class: undefined,
+  formatDate: (locale: string) =>
+    locale === "zh" ? "do MMM, yyy" : "d MMM, yyy",
+  endOfDay: false,
+  calendar: () => ({
+    numberOfMonths: 2,
+    class: "p-2",
+  }),
+});
 
 const defaultClass = "data-[state=open]:bg-elevated group";
 

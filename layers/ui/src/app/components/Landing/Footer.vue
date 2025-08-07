@@ -32,32 +32,37 @@
   </Primitive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { twMerge } from "tailwind-merge";
 
-const props = withDefaults(
-  defineProps<{
-    as?: PrimitiveProps["as"];
-    class?: unknown;
-    topClass?: unknown;
-    bottomClass?: unknown;
-    containerClass?: unknown;
-    leftClass?: unknown;
-    rightClass?: unknown;
-    centerClass?: unknown;
-  }>(),
-  {
-    as: "footer",
-    class: undefined,
-    topClass: undefined,
-    bottomClass: undefined,
-    containerClass: undefined,
-    leftClass: undefined,
-    rightClass: undefined,
-    centerClass: undefined,
-  },
-);
+export interface LandingFooterProps {
+  /**
+   * The element or component this component should render as.
+   * @defaultValue 'footer'
+   */
+  as?: PrimitiveProps["as"];
+  class?: unknown;
+  topClass?: unknown;
+  bottomClass?: unknown;
+  containerClass?: unknown;
+  leftClass?: unknown;
+  rightClass?: unknown;
+  centerClass?: unknown;
+}
+</script>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<LandingFooterProps>(), {
+  as: "footer",
+  class: undefined,
+  topClass: undefined,
+  bottomClass: undefined,
+  containerClass: undefined,
+  leftClass: undefined,
+  rightClass: undefined,
+  centerClass: undefined,
+});
 
 const slots = defineSlots();
 
