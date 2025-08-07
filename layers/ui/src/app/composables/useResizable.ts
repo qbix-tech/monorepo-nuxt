@@ -63,6 +63,9 @@ export type UseResizableProps = {
   unit?: "%" | "rem" | "px";
 };
 
+/**
+ * A composable to create a resizable panel.
+ */
 export const useResizable = (
   key: string,
   options: Ref<UseResizableProps> | UseResizableProps = {},

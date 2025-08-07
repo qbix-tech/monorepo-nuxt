@@ -13,14 +13,24 @@
         :name="user2.name"
         :description="'@' + user2.username"
         :avatar="{ src: user2.avatar.src, alt: user2.name }"
+        chip
         size="xs"
       />
-      <Me
-        :name="user3.name"
-        :description="'@' + user3.username"
-        :avatar="{ src: user3.avatar.src, alt: user3.name }"
-        size="sm"
-      />
+      <div class="flex justify-center gap-4">
+        <Me
+          :name="user3.name"
+          :description="'@' + user3.username"
+          :avatar="{ src: user3.avatar.src, alt: user3.name }"
+          size="sm"
+        />
+        <Me
+          :name="user4.name"
+          :description="'@' + user4.username"
+          :avatar="{ src: user4.avatar.src, alt: user4.name }"
+          size="sm"
+          :chip="{ color: 'error' }"
+        />
+      </div>
     </div>
 
     <div class="flex flex-col gap-2">
@@ -50,5 +60,13 @@ const user3 = {
   name: "Yeoh Lee Ming",
   username: "leeming988QM",
   avatar: { src: "https://github.com/leeming988QM.png" },
+};
+
+const user4 = {
+  name: "Ong Ming Yen",
+  username: "ongmingyen",
+  avatar: {
+    src: "https://github.com/ongmingyen.png",
+  },
 };
 </script>
