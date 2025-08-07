@@ -208,6 +208,7 @@ import {
   DemoEasyTransitions,
   DemoLightbox,
   DemoCharts,
+  DemoMe,
   DemoPasswordStrengthIndicator,
   DemoMarquee,
 } from "#components";
@@ -300,6 +301,7 @@ const Demos = [
   DemoEasyTransitions,
   DemoLightbox,
   DemoCharts,
+  DemoMe,
   DemoPasswordStrengthIndicator,
   DemoMarquee,
 ];

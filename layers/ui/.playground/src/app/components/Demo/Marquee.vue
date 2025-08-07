@@ -15,13 +15,14 @@
             root: 'w-full max-w-80 sm:w-60',
           }"
         >
-          <div class="flex gap-1.5">
-            <UAvatar :src="item.avatar.src" :alt="item.name" />
-            <div>
-              <span class="block text-xs">{{ item.name }}</span>
-              <span class="text-muted block text-xs">@{{ item.username }}</span>
-            </div>
-          </div>
+          <Me
+            :name="item.name"
+            :description="'@' + item.username"
+            :avatar="{
+              src: item.avatar.src,
+              alt: item.name,
+            }"
+          />
           <p class="text-xs">
             {{ item.feedback }}
           </p>

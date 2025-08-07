@@ -4,21 +4,16 @@
       class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-8 rounded-md p-12"
     >
       <SafeTemplate v-bind="{ data, status, error, refresh }" mode="text">
-        <template #default="{ data: safeData }">
+        <template #default="{ data: user }">
           <UCard>
-            <div class="flex gap-2">
-              <UAvatar
-                :src="safeData.avatar.src"
-                :alt="safeData.name"
-                size="lg"
-              />
-              <div>
-                <span class="block text-sm">{{ safeData.name }}</span>
-                <span class="text-muted block text-xs"
-                  >@{{ safeData.username }}</span
-                >
-              </div>
-            </div>
+            <Me
+              :name="user.name"
+              :description="'@' + user.username"
+              :avatar="{
+                src: user.avatar.src,
+                alt: user.name,
+              }"
+            />
           </UCard>
         </template>
       </SafeTemplate>
