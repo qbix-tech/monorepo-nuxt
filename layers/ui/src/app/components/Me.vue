@@ -157,7 +157,7 @@ export interface MeProps {
   /**
    * @defaultValue 'md'
    */
-  size?: "md" | "xs" | "sm" | "lg" | "xl" | "3xs" | "2xs" | "2xl" | "3xl";
+  size?: "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
   /**
    * The orientation of the user.
    * @defaultValue 'horizontal'

@@ -172,6 +172,7 @@ const props = withDefaults(defineProps<LandingHeaderProps<T>>(), {
   as: "header",
   title: "Landing UI",
   to: "/",
+  // @ts-expect-error this is valid
   mode: "modal",
   menu: undefined,
   menuIcon: "lucide:menu",
@@ -221,6 +222,7 @@ const defaultMenuHeaderClass =
 
 const Menu = computed<HeaderMenu<T>>(
   () =>
+    // @ts-expect-error this is valid
     ({
       slideover: USlideover,
       modal: UModal,

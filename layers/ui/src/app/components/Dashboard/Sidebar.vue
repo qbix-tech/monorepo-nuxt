@@ -225,6 +225,7 @@ const route = useRoute();
 const props = withDefaults(defineProps<DashboardSidebarProps<T>>(), {
   title: undefined,
   description: undefined,
+  // @ts-expect-error this is valid
   mode: "modal",
   menu: undefined,
   toggle: true,
@@ -313,6 +314,7 @@ watch(
 
 const Menu = computed<DashboardSidebarMenu<T>>(
   () =>
+    // @ts-expect-error this is valid
     ({
       slideover: USlideover,
       modal: UModal,

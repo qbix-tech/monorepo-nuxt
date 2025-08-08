@@ -30,7 +30,32 @@
 
     <USeparator icon="simple-icons:nuxtdotjs" type="dashed" class="h-px" />
 
-    <LandingFooter>
+    <LandingFooter top-class="border-b border-default">
+      <template #top>
+        <UContainer>
+          <LandingFooterColumns :columns="footerColumns">
+            <template #right>
+              <UFormField
+                name="email"
+                label="Subscribe to our newsletter"
+                size="lg"
+              >
+                <UInput type="email" class="w-full">
+                  <template #trailing>
+                    <UButton
+                      type="submit"
+                      size="xs"
+                      color="neutral"
+                      label="Subscribe"
+                    />
+                  </template>
+                </UInput>
+              </UFormField>
+            </template>
+          </LandingFooterColumns>
+        </UContainer>
+      </template>
+
       <template #left>
         <p class="text-muted text-sm">
           Copyright © {{ new Date().getFullYear() }}
@@ -80,6 +105,60 @@ const items = computed<NavigationMenuItem[]>(() => [
       !activeHeadings.value.includes("layouts"),
   },
 ]);
+
+const footerColumns = [
+  {
+    label: "Resources",
+    children: [
+      {
+        label: "Help center",
+      },
+      {
+        label: "Docs",
+      },
+      {
+        label: "Roadmap",
+      },
+      {
+        label: "Changelog",
+      },
+    ],
+  },
+  {
+    label: "Features",
+    children: [
+      {
+        label: "Affiliates",
+      },
+      {
+        label: "Portal",
+      },
+      {
+        label: "Jobs",
+      },
+      {
+        label: "Sponsors",
+      },
+    ],
+  },
+  {
+    label: "Company",
+    children: [
+      {
+        label: "About",
+      },
+      {
+        label: "Pricing",
+      },
+      {
+        label: "Careers",
+      },
+      {
+        label: "Blog",
+      },
+    ],
+  },
+];
 
 nuxtApp.hooks.hookOnce("page:finish", () => {
   updateHeadings(
