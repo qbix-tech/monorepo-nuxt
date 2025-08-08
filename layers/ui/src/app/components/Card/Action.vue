@@ -111,9 +111,7 @@
 
     <template v-if="transitionMode">
       <ContentTransition
-        v-bind="
-          typeof transition === 'object' ? transition : { mode: 'out-in' }
-        "
+        v-bind="typeof transition === 'object' ? transition : {}"
       >
         <ReuseContentTemplate />
       </ContentTransition>

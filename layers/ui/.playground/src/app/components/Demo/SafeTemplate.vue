@@ -3,7 +3,11 @@
     <div
       class="dark:bg-muted/20 bg-muted flex h-40 items-center justify-center gap-8 rounded-md p-12"
     >
-      <SafeTemplate v-bind="{ data, status, error, refresh }" mode="text">
+      <SafeTemplate
+        v-bind="{ data, status, error, refresh }"
+        error-mode="text"
+        transition-mode="fade"
+      >
         <template #default="{ data: user }">
           <UCard>
             <Me
