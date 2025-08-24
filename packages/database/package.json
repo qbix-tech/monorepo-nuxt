@@ -45,11 +45,11 @@
     "pg": "^8.16.3"
   },
   "devDependencies": {
-    "@types/pg": "^8.11.11",
+    "@types/pg": "^8.15.5",
     "drizzle-kit": "^0.31.4",
     "jiti": "^2.5.1",
-    "typescript": "^5.8.3",
-    "unbuild": "^3.6.0"
+    "typescript": "^5.9.2",
+    "unbuild": "^3.6.1"
   },
   "nx": {
     "targets": {
