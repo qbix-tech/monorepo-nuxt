@@ -38,7 +38,7 @@
   "dependencies": {
     "@org/storage": "workspace:*",
     "@org/utils": "workspace:*",
-    "@paralleldrive/cuid2": "^2.2.2",
+    "@paralleldrive/cuid2": "^3.3.0",
     "defu": "^6.1.4",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
