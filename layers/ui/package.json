@@ -14,7 +14,7 @@
   "dependencies": {
     "@date-fns/tz": "^1.2.0",
     "@internationalized/date": "^3.8.2",
-    "@nuxt/ui": "^3.3.0",
+    "@nuxt/ui": "^4.11.0",
     "@org/i18n": "workspace:*",
     "@org/utils": "workspace:*",
     "@tanstack/table-core": "^8.21.3",
