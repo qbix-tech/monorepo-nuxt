@@ -12,12 +12,12 @@
   "dependencies": {
     "@org/i18n": "workspace:*",
     "@org/ui": "workspace:*",
-    "nuxt": "^4.0.1",
-    "vue": "^3.5.18",
-    "vue-router": "^4.5.1"
+    "nuxt": "^4.5.2",
+    "vue": "^3.5.42",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.60",
-    "@iconify-json/simple-icons": "^1.2.46"
+    "@iconify-json/lucide": "^1.2.129",
+    "@iconify-json/simple-icons": "^1.2.94"
   }
 }
