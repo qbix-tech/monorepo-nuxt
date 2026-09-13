@@ -10,6 +10,6 @@
   },
   "dependencies": {
     "@org/database": "workspace:*",
-    "nitropack": "^2.12.4"
+    "nitropack": "^2.13.4"
   }
 }

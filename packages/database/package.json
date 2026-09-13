@@ -38,18 +38,18 @@
   "dependencies": {
     "@org/storage": "workspace:*",
     "@org/utils": "workspace:*",
-    "@paralleldrive/cuid2": "^2.2.2",
-    "defu": "^6.1.4",
-    "dotenv": "^17.2.1",
-    "drizzle-orm": "^0.44.4",
-    "pg": "^8.16.3"
+    "@paralleldrive/cuid2": "^2.3.1",
+    "defu": "^6.1.7",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.23.0"
   },
   "devDependencies": {
-    "@types/pg": "^8.11.11",
-    "drizzle-kit": "^0.31.4",
-    "jiti": "^2.5.1",
-    "typescript": "^5.8.3",
-    "unbuild": "^3.6.0"
+    "@types/pg": "^8.23.1",
+    "drizzle-kit": "^0.31.10",
+    "jiti": "^2.7.0",
+    "typescript": "^5.9.3",
+    "unbuild": "^3.6.1"
   },
   "nx": {
     "targets": {
