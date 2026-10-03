@@ -13,11 +13,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@nuxtjs/i18n": "^10.0.3"
+    "@nuxtjs/i18n": "^10.6.0"
   },
   "devDependencies": {
-    "nuxt": "^4.0.1",
-    "typescript": "^5.8.3",
+    "nuxt": "^4.5.2",
+    "typescript": "^5.9.3",
     "vue": "latest"
   }
 }
