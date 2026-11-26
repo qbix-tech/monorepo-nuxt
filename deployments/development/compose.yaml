@@ -2,7 +2,7 @@ name: "@org/development"
 
 services:
   postgres:
-    image: postgres:17-alpine
+    image: postgres:17-alpine@sha256:f9cf3e1f0066f0eb0c48707d864f0ac5941e9ff454a072077d97a4d278d07d73
     volumes:
       - ../../.dockerVolume/postgres:/var/lib/postgresql/data
     environment:
@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: valkey/valkey:7
+    image: valkey/valkey:7@sha256:edf27a750238c2a8be56d6c365d21930926cfee23385efe88cc6df9df2c911a1
     volumes:
       - ../../.dockerVolume/valkey:/data
     environment:
@@ -74,7 +74,7 @@ services:
       exit 0;"
 
   inbucket:
-    image: inbucket/inbucket
+    image: inbucket/inbucket@sha256:48063d73be66889d95c43a6ee18ed5db08e3ad01196d8f7aa1e7f1e6e4625d93
     ports:
       # WEB
       - ${INBUCKET_WEB_PORT:-30180}:9000
